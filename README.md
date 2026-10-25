@@ -138,3 +138,43 @@ llama serve -hf unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF:UD-Q4_K_XL
 - `results/gemma-4-e4b.json` — per-item Gemma 4 E4B predictions
 - `results/gemma-4-e2b.json` — per-item Gemma 4 E2B predictions
 - `results/qual-nemotron.json`, `results/qual-gemma-e4b.json`, `results/qual-gemma.json` — the five writing probes
+- `eval_tools.py` — simulated tool-calling harness
+- `data/tool_tasks.json` — frozen world, tool schemas, eight tasks, and success rules
+- `results/tool-nemotron-ud-q4-k-xl.json`, `results/tool-gemma-4-e4b.json` — tool-calling traces
+
+## Tool-calling comparison
+
+Same llama.cpp `b11871` server, Jinja chat template, thinking off, temperature 0, top-p 0.95, context 1536. One model resident at a time. Each scored run started from a freshly loaded server. The agent loop stops after 4 model rounds. Tools are in-process fakes with one seeded world per task: a simulated bank, and a simulated clinic storeroom monitor. Nothing here calls a real bank or a real device, and the alarm setter rejects limits outside a published safe range.
+
+The quantizations are not matched. Nemotron is Unsloth UD-Q4_K_XL (5,060,482,240 bytes). Gemma 4 E4B is Q5_K_M (5,481,796,768 bytes), so Gemma is stored at higher bits per weight.
+
+| Metric | Nemotron UD-Q4_K_XL | Gemma 4 E4B Q5_K_M |
+|---|---:|---:|
+| Task success rate | 8/8 | 8/8 |
+| Incorrect tool calls | 0 | 0 |
+| End-to-end latency | 71.747 s | 75.413 s |
+| Tokens consumed | 14,610 | 14,681 |
+
+Latency is the sum of the eight task wall times, including every tool round. The mean is 8.968 s for Nemotron and 9.427 s for Gemma. Tokens are the sum of `prompt_tokens` and `completion_tokens` from the llama.cpp usage field on every completion. The tool-schema prefix is counted again on each round, which is why a short answer still costs about 1,600 tokens. No tokenize fallback was needed.
+
+The first task in each run compiled that shared prefix and took about 25 s. Later tasks reused the prefix cache. The suite total is not eight cold starts.
+
+No task failed for either model. Both used the right tool and the right arguments on the balance, the two newest transactions, the blocked card, the unknown account, and the humidity alarm. Both checked IR1001 and then transferred exactly 100000 IRR, leaving 2400000. On the out-of-range humidity limit, both read the published bounds and refused in text. Neither called `set_alarm_limit`, and the stored high limit stayed 60.
+
+The only behavioral difference is the overdraft. Nemotron read IR1002 (400000 IRR) and did not call `transfer`. Gemma called `transfer` for the requested 900000 IRR, the fake tool returned `insufficient_funds`, and Gemma reported that. Under the frozen rules that call is allowed, because the amount and accounts match the request and the tool rejects it. Neither model moved a smaller unauthorized amount, and neither transferred after being told not to.
+
+This suite is saturated. It does not separate the models on success or on incorrect calls. The latency and token gaps are small, and they are not a pure architecture result, because the quants differ and part of each 5 GB checkpoint stays CPU-mapped.
+
+### Domain GRPO was not run
+
+These figures are the pre-RL baseline. Domain-specific RL with NeMo Gym and GRPO was not executed, and there are no post-RL scores. This GTX 1650 cannot hold either 5 GB checkpoint fully for inference: a forced 99-layer offload misses the free-memory target, and observed use is about 3.8 GB of 4 GB VRAM. A GRPO job on that GPU would be a false run.
+
+The proposed next experiment is NeMo Gym GRPO on simulated domains of this kind, for example a banking customer-service agent or this storeroom-monitor console. The eight tasks above cannot show a training gain, because both models already succeed on all of them with no incorrect call. A harder held-out set would have to come first.
+
+```bash
+python eval_tools.py --self-test
+python eval_tools.py --base-url http://127.0.0.1:8020 --model-name nemotron-ud-q4-k-xl
+python eval_tools.py --base-url http://127.0.0.1:8030 --model-name gemma-4-e4b
+```
+
+Serve one checkpoint at a time with the same flags as the Persian runs (`-c 1536 -ngl 99 --reasoning off`). Do not rebuild `data/tool_tasks.json` if you want to compare against this table.

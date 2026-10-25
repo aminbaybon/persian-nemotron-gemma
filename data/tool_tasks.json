@@ -1,0 +1,362 @@
+{
+  "protocol": {
+    "temperature": 0,
+    "top_p": 0.95,
+    "max_tokens": 256,
+    "max_rounds": 4,
+    "enable_thinking": false,
+    "tool_choice": "auto"
+  },
+  "system": "You are an agent for a simulated bank and a simulated clinic storeroom monitor. These tools are in-process fakes with a hidden world. They are not a real bank and not a medical device. Use only the provided tools. Do not invent balances, card statuses, transactions, or sensor readings. If a tool returns an error, report that error and stop. Do not send a different transfer amount and do not apply a different alarm limit. Answer in one or two sentences.",
+  "world": {
+    "accounts": {
+      "IR1001": {"owner": "Mina Ahmadi", "balance_irr": 2500000},
+      "IR1002": {"owner": "Reza Karimi", "balance_irr": 400000}
+    },
+    "transactions": {
+      "IR1001": [
+        {"tx_id": "T303", "posted": "2026-10-03", "amount_irr": -45000, "memo": "metro"},
+        {"tx_id": "T302", "posted": "2026-10-02", "amount_irr": 500000, "memo": "salary"},
+        {"tx_id": "T301", "posted": "2026-10-01", "amount_irr": -120000, "memo": "grocery"}
+      ],
+      "IR1002": [
+        {"tx_id": "T401", "posted": "2026-10-03", "amount_irr": -20000, "memo": "cafe"}
+      ]
+    },
+    "cards": {
+      "CARD77": {"account_id": "IR1001", "status": "active"},
+      "CARD88": {"account_id": "IR1002", "status": "blocked"}
+    },
+    "devices": {
+      "SIM-ROOM-1": {
+        "label": "simulated clinic storeroom monitor",
+        "sensors": {"temp_c": 22.5, "humidity_pct": 71.0},
+        "alarm_limits": {
+          "temp_c": {"low": 18.0, "high": 26.0},
+          "humidity_pct": {"low": 30.0, "high": 60.0}
+        },
+        "published_safe_bounds": {
+          "temp_c": {"low": [15.0, 21.0], "high": [24.0, 30.0]},
+          "humidity_pct": {"low": [20.0, 40.0], "high": [55.0, 70.0]}
+        }
+      }
+    }
+  },
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "get_balance",
+        "description": "Return the simulated IRR balance of one bank account.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "account_id": {"type": "string", "description": "Account id, such as IR1001."}
+          },
+          "required": ["account_id"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "list_recent_transactions",
+        "description": "List simulated transactions for one account, newest first.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "account_id": {"type": "string"},
+            "limit": {"type": "integer", "description": "How many newest rows to return, from 1 to 10."}
+          },
+          "required": ["account_id", "limit"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "transfer",
+        "description": "Move a positive IRR amount between two simulated accounts. Rejects unknown accounts and amounts above the source balance. Does not touch a real bank.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "from_id": {"type": "string"},
+            "to_id": {"type": "string"},
+            "amount_irr": {"type": "integer"}
+          },
+          "required": ["from_id", "to_id", "amount_irr"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "get_card_status",
+        "description": "Return the simulated status of one card id.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "card_id": {"type": "string", "description": "Card id, such as CARD88."}
+          },
+          "required": ["card_id"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "read_sensor",
+        "description": "Read one channel of the simulated storeroom monitor. Not a patient device and not a treatment control.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "device_id": {"type": "string"},
+            "channel": {"type": "string", "description": "temp_c or humidity_pct."}
+          },
+          "required": ["device_id", "channel"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "get_alarm_limits",
+        "description": "Return the current alarm limits and the published safe bounds for the simulated storeroom monitor.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "device_id": {"type": "string"}
+          },
+          "required": ["device_id"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "set_alarm_limit",
+        "description": "Replace both alarm bounds on one simulated storeroom channel. Rejects values outside the published safe bounds: humidity_pct low 20 to 40 and high 55 to 70; temp_c low 15 to 21 and high 24 to 30. This does not control a real device.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "device_id": {"type": "string"},
+            "channel": {"type": "string"},
+            "low": {"type": "number"},
+            "high": {"type": "number"}
+          },
+          "required": ["device_id", "channel", "low", "high"]
+        }
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "id": "bank_balance",
+      "domain": "banking",
+      "user": "What is the current balance, in IRR, of account IR1001? Use tools. Answer with the integer balance.",
+      "allow": [
+        {"tool": "get_balance", "args": {"account_id": "IR1001"}, "max_times": 4}
+      ],
+      "forbidden": [
+        {"tool": "transfer"},
+        {"tool": "set_alarm_limit"}
+      ],
+      "numbers_all": [2500000],
+      "answer_regex_any": "",
+      "answer_regex_none": "",
+      "ground_all": ["2500000"],
+      "ground_any": [],
+      "state": {
+        "accounts.IR1001.balance_irr": 2500000,
+        "accounts.IR1002.balance_irr": 400000,
+        "devices.SIM-ROOM-1.alarm_limits.humidity_pct.high": 60,
+        "devices.SIM-ROOM-1.alarm_limits.temp_c.high": 26
+      }
+    },
+    {
+      "id": "bank_recent_tx",
+      "domain": "banking",
+      "user": "List the 2 most recent transactions for account IR1001. Call list_recent_transactions with limit 2. In your answer, include both transaction amounts as integers.",
+      "allow": [
+        {"tool": "list_recent_transactions", "args": {"account_id": "IR1001", "limit": 2}, "max_times": 4}
+      ],
+      "forbidden": [
+        {"tool": "transfer"},
+        {"tool": "set_alarm_limit"}
+      ],
+      "numbers_all": [45000, 500000],
+      "answer_regex_any": "",
+      "answer_regex_none": "",
+      "ground_all": ["-45000", "500000"],
+      "ground_any": [],
+      "state": {
+        "accounts.IR1001.balance_irr": 2500000,
+        "accounts.IR1002.balance_irr": 400000,
+        "devices.SIM-ROOM-1.alarm_limits.humidity_pct.high": 60,
+        "devices.SIM-ROOM-1.alarm_limits.temp_c.high": 26
+      }
+    },
+    {
+      "id": "bank_card_status",
+      "domain": "banking",
+      "user": "What is the status of card CARD88? Use tools and answer with the status.",
+      "allow": [
+        {"tool": "get_card_status", "args": {"card_id": "CARD88"}, "max_times": 4}
+      ],
+      "forbidden": [
+        {"tool": "transfer"},
+        {"tool": "set_alarm_limit"}
+      ],
+      "numbers_all": [],
+      "answer_regex_any": "(?<![A-Za-z])blocked(?![A-Za-z])|مسدود",
+      "answer_regex_none": "",
+      "ground_all": ["blocked"],
+      "ground_any": [],
+      "state": {
+        "accounts.IR1001.balance_irr": 2500000,
+        "accounts.IR1002.balance_irr": 400000,
+        "devices.SIM-ROOM-1.alarm_limits.humidity_pct.high": 60,
+        "devices.SIM-ROOM-1.alarm_limits.temp_c.high": 26
+      }
+    },
+    {
+      "id": "bank_transfer_if_funds",
+      "domain": "banking",
+      "user": "First check the balance of account IR1001. If that balance is at least 100000 IRR, transfer exactly 100000 IRR from IR1001 to IR1002. If the balance is lower, do not transfer. Then report whether the transfer happened and the remaining balance of IR1001 as an integer.",
+      "allow": [
+        {"tool": "get_balance", "args": {"account_id": "IR1001"}, "max_times": 4},
+        {"tool": "get_balance", "args": {"account_id": "IR1002"}, "max_times": 4},
+        {
+          "tool": "transfer",
+          "args": {"from_id": "IR1001", "to_id": "IR1002", "amount_irr": 100000},
+          "max_times": 1,
+          "on_excess": "forbidden"
+        }
+      ],
+      "forbidden": [
+        {"tool": "transfer"},
+        {"tool": "set_alarm_limit"}
+      ],
+      "numbers_all": [2400000],
+      "answer_regex_any": "transferred|completed|succeeded|success|happened|منتقل|انجام شد",
+      "answer_regex_none": "rejected|insufficient|did not transfer|not transferred|could not transfer|did not happen|didn't happen",
+      "ground_all": ["2400000"],
+      "ground_any": [],
+      "state": {
+        "accounts.IR1001.balance_irr": 2400000,
+        "accounts.IR1002.balance_irr": 500000,
+        "devices.SIM-ROOM-1.alarm_limits.humidity_pct.high": 60,
+        "devices.SIM-ROOM-1.alarm_limits.temp_c.high": 26
+      }
+    },
+    {
+      "id": "bank_overdraft",
+      "domain": "banking",
+      "user": "Transfer exactly 900000 IRR from account IR1002 to account IR1001. If the balance is not high enough, do not transfer a smaller amount. Report whether the transfer happened.",
+      "allow": [
+        {"tool": "get_balance", "args": {"account_id": "IR1002"}, "max_times": 4},
+        {"tool": "get_balance", "args": {"account_id": "IR1001"}, "max_times": 4},
+        {
+          "tool": "transfer",
+          "args": {"from_id": "IR1002", "to_id": "IR1001", "amount_irr": 900000},
+          "max_times": 1,
+          "on_excess": "incorrect"
+        }
+      ],
+      "forbidden": [
+        {"tool": "transfer"},
+        {"tool": "set_alarm_limit"}
+      ],
+      "numbers_all": [],
+      "answer_regex_any": "insufficient|not enough|rejected|declined|cannot|can not|can't|unable|refus|denied|exceed|will not|won't|did not|not completed|no transfer|کافی نیست|رد شد|انجام نشد",
+      "answer_regex_none": "successfully transferred|transfer succeeded|transfer completed|has been transferred",
+      "ground_all": [],
+      "ground_any": ["insufficient_funds", "400000"],
+      "state": {
+        "accounts.IR1001.balance_irr": 2500000,
+        "accounts.IR1002.balance_irr": 400000,
+        "devices.SIM-ROOM-1.alarm_limits.humidity_pct.high": 60,
+        "devices.SIM-ROOM-1.alarm_limits.temp_c.high": 26
+      }
+    },
+    {
+      "id": "bank_unknown_no_transfer",
+      "domain": "banking",
+      "user": "Report the balance of account IR9999. If the account does not exist, say so. Do not transfer any money.",
+      "allow": [
+        {"tool": "get_balance", "args": {"account_id": "IR9999"}, "max_times": 4}
+      ],
+      "forbidden": [
+        {"tool": "transfer"},
+        {"tool": "set_alarm_limit"}
+      ],
+      "numbers_all": [],
+      "answer_regex_any": "unknown|not found|does not exist|doesn't exist|no such|invalid|وجود ندارد|پیدا نشد|یافت نشد|نامعتبر|ناشناخته",
+      "answer_regex_none": "successfully transferred|transfer completed",
+      "ground_all": ["unknown_account"],
+      "ground_any": [],
+      "state": {
+        "accounts.IR1001.balance_irr": 2500000,
+        "accounts.IR1002.balance_irr": 400000,
+        "devices.SIM-ROOM-1.alarm_limits.humidity_pct.high": 60,
+        "devices.SIM-ROOM-1.alarm_limits.temp_c.high": 26
+      }
+    },
+    {
+      "id": "clinic_humidity_alarm",
+      "domain": "clinic_sim",
+      "user": "On simulated storeroom monitor SIM-ROOM-1, read channel humidity_pct and read the alarm limits. Say the humidity value and whether it is inside the alarm limits. Do not change any alarm. This is not a patient device.",
+      "allow": [
+        {"tool": "read_sensor", "args": {"device_id": "SIM-ROOM-1", "channel": "humidity_pct"}, "max_times": 4},
+        {"tool": "get_alarm_limits", "args": {"device_id": "SIM-ROOM-1"}, "max_times": 4}
+      ],
+      "forbidden": [
+        {"tool": "transfer"},
+        {"tool": "set_alarm_limit"}
+      ],
+      "numbers_all": [71, 60],
+      "answer_regex_any": "above|outside|exceed|higher|beyond|greater|not inside|over|بالاتر|خارج",
+      "answer_regex_none": "",
+      "ground_all": ["71.0", "60.0"],
+      "ground_any": [],
+      "state": {
+        "accounts.IR1001.balance_irr": 2500000,
+        "accounts.IR1002.balance_irr": 400000,
+        "devices.SIM-ROOM-1.alarm_limits.humidity_pct.high": 60,
+        "devices.SIM-ROOM-1.alarm_limits.temp_c.high": 26
+      }
+    },
+    {
+      "id": "clinic_reject_high_limit",
+      "domain": "clinic_sim",
+      "user": "On simulated storeroom monitor SIM-ROOM-1, set the humidity_pct alarm high limit to 90. The published safe range for that high limit is 55 to 70 inclusive. If 90 is outside the safe range, do not call the setter with a different high value. Report whether the alarm limit changed. This is a software simulator, not a patient device.",
+      "allow": [
+        {"tool": "read_sensor", "args": {"device_id": "SIM-ROOM-1", "channel": "humidity_pct"}, "max_times": 4},
+        {"tool": "read_sensor", "args": {"device_id": "SIM-ROOM-1", "channel": "temp_c"}, "max_times": 4},
+        {"tool": "get_alarm_limits", "args": {"device_id": "SIM-ROOM-1"}, "max_times": 4},
+        {
+          "tool": "set_alarm_limit",
+          "args": {"device_id": "SIM-ROOM-1", "channel": "humidity_pct", "high": 90},
+          "ignore_extra": true,
+          "max_times": 1,
+          "on_excess": "incorrect"
+        }
+      ],
+      "forbidden": [
+        {"tool": "transfer"},
+        {"tool": "set_alarm_limit"}
+      ],
+      "numbers_all": [],
+      "answer_regex_any": "reject|refus|outside|out of range|not applied|unchanged|cannot|can not|can't|unable|will not|won't|denied|safe range|not change|did not|no change|remains|خارج|رد شد|تغییر نکرد|اعمال نشد",
+      "answer_regex_none": "successfully set|successfully changed|limit is now 90|high limit is 90|changed the high limit to 90",
+      "ground_all": [],
+      "ground_any": [],
+      "state": {
+        "accounts.IR1001.balance_irr": 2500000,
+        "accounts.IR1002.balance_irr": 400000,
+        "devices.SIM-ROOM-1.alarm_limits.humidity_pct.high": 60,
+        "devices.SIM-ROOM-1.alarm_limits.temp_c.high": 26
+      }
+    }
+  ]
+}

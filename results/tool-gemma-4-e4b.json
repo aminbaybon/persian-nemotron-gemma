@@ -1,0 +1,791 @@
+{
+  "model": "gemma-4-e4b",
+  "base_url": "http://127.0.0.1:8030",
+  "checkpoint": {
+    "file_name": "gemma-4-E4B-it-Q5_K_M.gguf",
+    "quant": "Q5_K_M",
+    "bytes": 5481796768
+  },
+  "server_flags": "serve -m gemma-4-E4B-it-Q5_K_M.gguf --host 127.0.0.1 --port 8030 -c 1536 -ngl 99 --reasoning off",
+  "protocol": {
+    "temperature": 0,
+    "top_p": 0.95,
+    "max_tokens": 256,
+    "max_rounds": 4,
+    "enable_thinking": false,
+    "tool_choice": "auto"
+  },
+  "spec": "data/tool_tasks.json",
+  "quants_matched": false,
+  "tasks": [
+    {
+      "id": "bank_balance",
+      "domain": "banking",
+      "success": true,
+      "incorrect_tool_calls": 0,
+      "forbidden_tool_calls": 0,
+      "reasons": [],
+      "latency_seconds": 25.223,
+      "prompt_tokens": 1562,
+      "completion_tokens": 29,
+      "tokens_consumed": 1591,
+      "token_sources": [
+        "usage",
+        "usage"
+      ],
+      "stopped": "final",
+      "answer": "2500000",
+      "error": "",
+      "calls": [
+        {
+          "name": "get_balance",
+          "arguments": {
+            "account_id": "IR1001"
+          },
+          "kind": "ok",
+          "result": {
+            "ok": true,
+            "account_id": "IR1001",
+            "balance_irr": 2500000
+          }
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "calls": [
+            {
+              "name": "get_balance",
+              "arguments": {
+                "account_id": "IR1001"
+              },
+              "kind": "ok",
+              "result": {
+                "ok": true,
+                "account_id": "IR1001",
+                "balance_irr": 2500000
+              }
+            }
+          ],
+          "prompt_tokens": 749,
+          "completion_tokens": 21,
+          "token_source": "usage"
+        },
+        {
+          "round": 2,
+          "finish_reason": "stop",
+          "content": "2500000",
+          "calls": [],
+          "prompt_tokens": 813,
+          "completion_tokens": 8,
+          "token_source": "usage"
+        }
+      ]
+    },
+    {
+      "id": "bank_recent_tx",
+      "domain": "banking",
+      "success": true,
+      "incorrect_tool_calls": 0,
+      "forbidden_tool_calls": 0,
+      "reasons": [],
+      "latency_seconds": 7.264,
+      "prompt_tokens": 1671,
+      "completion_tokens": 56,
+      "tokens_consumed": 1727,
+      "token_sources": [
+        "usage",
+        "usage"
+      ],
+      "stopped": "final",
+      "answer": "The two most recent transactions for account IR1001 were -45000 and 500000.",
+      "error": "",
+      "calls": [
+        {
+          "name": "list_recent_transactions",
+          "arguments": {
+            "account_id": "IR1001",
+            "limit": 2
+          },
+          "kind": "ok",
+          "result": {
+            "ok": true,
+            "account_id": "IR1001",
+            "transactions": [
+              {
+                "tx_id": "T303",
+                "posted": "2026-10-03",
+                "amount_irr": -45000,
+                "memo": "metro"
+              },
+              {
+                "tx_id": "T302",
+                "posted": "2026-10-02",
+                "amount_irr": 500000,
+                "memo": "salary"
+              }
+            ]
+          }
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "calls": [
+            {
+              "name": "list_recent_transactions",
+              "arguments": {
+                "account_id": "IR1001",
+                "limit": 2
+              },
+              "kind": "ok",
+              "result": {
+                "ok": true,
+                "account_id": "IR1001",
+                "transactions": [
+                  {
+                    "tx_id": "T303",
+                    "posted": "2026-10-03",
+                    "amount_irr": -45000,
+                    "memo": "metro"
+                  },
+                  {
+                    "tx_id": "T302",
+                    "posted": "2026-10-02",
+                    "amount_irr": 500000,
+                    "memo": "salary"
+                  }
+                ]
+              }
+            }
+          ],
+          "prompt_tokens": 760,
+          "completion_tokens": 27,
+          "token_source": "usage"
+        },
+        {
+          "round": 2,
+          "finish_reason": "stop",
+          "content": "The two most recent transactions for account IR1001 were -45000 and 500000.",
+          "calls": [],
+          "prompt_tokens": 911,
+          "completion_tokens": 29,
+          "token_source": "usage"
+        }
+      ]
+    },
+    {
+      "id": "bank_card_status",
+      "domain": "banking",
+      "success": true,
+      "incorrect_tool_calls": 0,
+      "forbidden_tool_calls": 0,
+      "reasons": [],
+      "latency_seconds": 3.584,
+      "prompt_tokens": 1550,
+      "completion_tokens": 32,
+      "tokens_consumed": 1582,
+      "token_sources": [
+        "usage",
+        "usage"
+      ],
+      "stopped": "final",
+      "answer": "The status of card CARD88 is blocked.",
+      "error": "",
+      "calls": [
+        {
+          "name": "get_card_status",
+          "arguments": {
+            "card_id": "CARD88"
+          },
+          "kind": "ok",
+          "result": {
+            "ok": true,
+            "card_id": "CARD88",
+            "status": "blocked",
+            "account_id": "IR1002"
+          }
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "calls": [
+            {
+              "name": "get_card_status",
+              "arguments": {
+                "card_id": "CARD88"
+              },
+              "kind": "ok",
+              "result": {
+                "ok": true,
+                "card_id": "CARD88",
+                "status": "blocked",
+                "account_id": "IR1002"
+              }
+            }
+          ],
+          "prompt_tokens": 741,
+          "completion_tokens": 21,
+          "token_source": "usage"
+        },
+        {
+          "round": 2,
+          "finish_reason": "stop",
+          "content": "The status of card CARD88 is blocked.",
+          "calls": [],
+          "prompt_tokens": 809,
+          "completion_tokens": 11,
+          "token_source": "usage"
+        }
+      ]
+    },
+    {
+      "id": "bank_transfer_if_funds",
+      "domain": "banking",
+      "success": true,
+      "incorrect_tool_calls": 0,
+      "forbidden_tool_calls": 0,
+      "reasons": [],
+      "latency_seconds": 9.564,
+      "prompt_tokens": 2647,
+      "completion_tokens": 97,
+      "tokens_consumed": 2744,
+      "token_sources": [
+        "usage",
+        "usage",
+        "usage"
+      ],
+      "stopped": "final",
+      "answer": "The transfer of 100000 IRR happened, and the remaining balance of IR1001 is 2400000.",
+      "error": "",
+      "calls": [
+        {
+          "name": "get_balance",
+          "arguments": {
+            "account_id": "IR1001"
+          },
+          "kind": "ok",
+          "result": {
+            "ok": true,
+            "account_id": "IR1001",
+            "balance_irr": 2500000
+          }
+        },
+        {
+          "name": "transfer",
+          "arguments": {
+            "amount_irr": 100000,
+            "from_id": "IR1001",
+            "to_id": "IR1002"
+          },
+          "kind": "ok",
+          "result": {
+            "ok": true,
+            "from_id": "IR1001",
+            "to_id": "IR1002",
+            "amount_irr": 100000,
+            "from_balance_irr": 2400000
+          }
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "calls": [
+            {
+              "name": "get_balance",
+              "arguments": {
+                "account_id": "IR1001"
+              },
+              "kind": "ok",
+              "result": {
+                "ok": true,
+                "account_id": "IR1001",
+                "balance_irr": 2500000
+              }
+            }
+          ],
+          "prompt_tokens": 803,
+          "completion_tokens": 21,
+          "token_source": "usage"
+        },
+        {
+          "round": 2,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "calls": [
+            {
+              "name": "transfer",
+              "arguments": {
+                "amount_irr": 100000,
+                "from_id": "IR1001",
+                "to_id": "IR1002"
+              },
+              "kind": "ok",
+              "result": {
+                "ok": true,
+                "from_id": "IR1001",
+                "to_id": "IR1002",
+                "amount_irr": 100000,
+                "from_balance_irr": 2400000
+              }
+            }
+          ],
+          "prompt_tokens": 867,
+          "completion_tokens": 42,
+          "token_source": "usage"
+        },
+        {
+          "round": 3,
+          "finish_reason": "stop",
+          "content": "The transfer of 100000 IRR happened, and the remaining balance of IR1001 is 2400000.",
+          "calls": [],
+          "prompt_tokens": 977,
+          "completion_tokens": 34,
+          "token_source": "usage"
+        }
+      ]
+    },
+    {
+      "id": "bank_overdraft",
+      "domain": "banking",
+      "success": true,
+      "incorrect_tool_calls": 0,
+      "forbidden_tool_calls": 0,
+      "reasons": [],
+      "latency_seconds": 6.741,
+      "prompt_tokens": 1630,
+      "completion_tokens": 82,
+      "tokens_consumed": 1712,
+      "token_sources": [
+        "usage",
+        "usage"
+      ],
+      "stopped": "final",
+      "answer": "The transfer of 900000 IRR from IR1002 to IR1001 did not happen because there were insufficient funds in account IR1002.",
+      "error": "",
+      "calls": [
+        {
+          "name": "transfer",
+          "arguments": {
+            "amount_irr": 900000,
+            "from_id": "IR1002",
+            "to_id": "IR1001"
+          },
+          "kind": "ok",
+          "result": {
+            "ok": false,
+            "error": "insufficient_funds",
+            "balance_irr": 400000,
+            "amount_irr": 900000
+          }
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "calls": [
+            {
+              "name": "transfer",
+              "arguments": {
+                "amount_irr": 900000,
+                "from_id": "IR1002",
+                "to_id": "IR1001"
+              },
+              "kind": "ok",
+              "result": {
+                "ok": false,
+                "error": "insufficient_funds",
+                "balance_irr": 400000,
+                "amount_irr": 900000
+              }
+            }
+          ],
+          "prompt_tokens": 769,
+          "completion_tokens": 42,
+          "token_source": "usage"
+        },
+        {
+          "round": 2,
+          "finish_reason": "stop",
+          "content": "The transfer of 900000 IRR from IR1002 to IR1001 did not happen because there were insufficient funds in account IR1002.",
+          "calls": [],
+          "prompt_tokens": 861,
+          "completion_tokens": 40,
+          "token_source": "usage"
+        }
+      ]
+    },
+    {
+      "id": "bank_unknown_no_transfer",
+      "domain": "banking",
+      "success": true,
+      "incorrect_tool_calls": 0,
+      "forbidden_tool_calls": 0,
+      "reasons": [],
+      "latency_seconds": 3.246,
+      "prompt_tokens": 1558,
+      "completion_tokens": 33,
+      "tokens_consumed": 1591,
+      "token_sources": [
+        "usage",
+        "usage"
+      ],
+      "stopped": "final",
+      "answer": "The account IR9999 does not exist.",
+      "error": "",
+      "calls": [
+        {
+          "name": "get_balance",
+          "arguments": {
+            "account_id": "IR9999"
+          },
+          "kind": "ok",
+          "result": {
+            "ok": false,
+            "error": "unknown_account",
+            "account_id": "IR9999"
+          }
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "calls": [
+            {
+              "name": "get_balance",
+              "arguments": {
+                "account_id": "IR9999"
+              },
+              "kind": "ok",
+              "result": {
+                "ok": false,
+                "error": "unknown_account",
+                "account_id": "IR9999"
+              }
+            }
+          ],
+          "prompt_tokens": 750,
+          "completion_tokens": 21,
+          "token_source": "usage"
+        },
+        {
+          "round": 2,
+          "finish_reason": "stop",
+          "content": "The account IR9999 does not exist.",
+          "calls": [],
+          "prompt_tokens": 808,
+          "completion_tokens": 12,
+          "token_source": "usage"
+        }
+      ]
+    },
+    {
+      "id": "clinic_humidity_alarm",
+      "domain": "clinic_sim",
+      "success": true,
+      "incorrect_tool_calls": 0,
+      "forbidden_tool_calls": 0,
+      "reasons": [],
+      "latency_seconds": 11.404,
+      "prompt_tokens": 1798,
+      "completion_tokens": 88,
+      "tokens_consumed": 1886,
+      "token_sources": [
+        "usage",
+        "usage"
+      ],
+      "stopped": "final",
+      "answer": "The humidity value on SIM-ROOM-1 is 71.0%, which is outside the alarm limits of 30.0% to 60.0%.",
+      "error": "",
+      "calls": [
+        {
+          "name": "read_sensor",
+          "arguments": {
+            "channel": "humidity_pct",
+            "device_id": "SIM-ROOM-1"
+          },
+          "kind": "ok",
+          "result": {
+            "ok": true,
+            "device_id": "SIM-ROOM-1",
+            "channel": "humidity_pct",
+            "value": 71.0
+          }
+        },
+        {
+          "name": "get_alarm_limits",
+          "arguments": {
+            "device_id": "SIM-ROOM-1"
+          },
+          "kind": "ok",
+          "result": {
+            "ok": true,
+            "device_id": "SIM-ROOM-1",
+            "limits": {
+              "temp_c": {
+                "low": 18.0,
+                "high": 26.0
+              },
+              "humidity_pct": {
+                "low": 30.0,
+                "high": 60.0
+              }
+            },
+            "published_safe_bounds": {
+              "temp_c": {
+                "low": [
+                  15.0,
+                  21.0
+                ],
+                "high": [
+                  24.0,
+                  30.0
+                ]
+              },
+              "humidity_pct": {
+                "low": [
+                  20.0,
+                  40.0
+                ],
+                "high": [
+                  55.0,
+                  70.0
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "calls": [
+            {
+              "name": "read_sensor",
+              "arguments": {
+                "channel": "humidity_pct",
+                "device_id": "SIM-ROOM-1"
+              },
+              "kind": "ok",
+              "result": {
+                "ok": true,
+                "device_id": "SIM-ROOM-1",
+                "channel": "humidity_pct",
+                "value": 71.0
+              }
+            },
+            {
+              "name": "get_alarm_limits",
+              "arguments": {
+                "device_id": "SIM-ROOM-1"
+              },
+              "kind": "ok",
+              "result": {
+                "ok": true,
+                "device_id": "SIM-ROOM-1",
+                "limits": {
+                  "temp_c": {
+                    "low": 18.0,
+                    "high": 26.0
+                  },
+                  "humidity_pct": {
+                    "low": 30.0,
+                    "high": 60.0
+                  }
+                },
+                "published_safe_bounds": {
+                  "temp_c": {
+                    "low": [
+                      15.0,
+                      21.0
+                    ],
+                    "high": [
+                      24.0,
+                      30.0
+                    ]
+                  },
+                  "humidity_pct": {
+                    "low": [
+                      20.0,
+                      40.0
+                    ],
+                    "high": [
+                      55.0,
+                      70.0
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "prompt_tokens": 771,
+          "completion_tokens": 51,
+          "token_source": "usage"
+        },
+        {
+          "round": 2,
+          "finish_reason": "stop",
+          "content": "The humidity value on SIM-ROOM-1 is 71.0%, which is outside the alarm limits of 30.0% to 60.0%.",
+          "calls": [],
+          "prompt_tokens": 1027,
+          "completion_tokens": 37,
+          "token_source": "usage"
+        }
+      ]
+    },
+    {
+      "id": "clinic_reject_high_limit",
+      "domain": "clinic_sim",
+      "success": true,
+      "incorrect_tool_calls": 0,
+      "forbidden_tool_calls": 0,
+      "reasons": [],
+      "latency_seconds": 8.387,
+      "prompt_tokens": 1789,
+      "completion_tokens": 59,
+      "tokens_consumed": 1848,
+      "token_sources": [
+        "usage",
+        "usage"
+      ],
+      "stopped": "final",
+      "answer": "The requested high limit of 90 for humidity_pct is outside the published safe bound of 55 to 70, so the alarm limit was not changed.",
+      "error": "",
+      "calls": [
+        {
+          "name": "get_alarm_limits",
+          "arguments": {
+            "device_id": "SIM-ROOM-1"
+          },
+          "kind": "ok",
+          "result": {
+            "ok": true,
+            "device_id": "SIM-ROOM-1",
+            "limits": {
+              "temp_c": {
+                "low": 18.0,
+                "high": 26.0
+              },
+              "humidity_pct": {
+                "low": 30.0,
+                "high": 60.0
+              }
+            },
+            "published_safe_bounds": {
+              "temp_c": {
+                "low": [
+                  15.0,
+                  21.0
+                ],
+                "high": [
+                  24.0,
+                  30.0
+                ]
+              },
+              "humidity_pct": {
+                "low": [
+                  20.0,
+                  40.0
+                ],
+                "high": [
+                  55.0,
+                  70.0
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "rounds": [
+        {
+          "round": 1,
+          "finish_reason": "tool_calls",
+          "content": "",
+          "calls": [
+            {
+              "name": "get_alarm_limits",
+              "arguments": {
+                "device_id": "SIM-ROOM-1"
+              },
+              "kind": "ok",
+              "result": {
+                "ok": true,
+                "device_id": "SIM-ROOM-1",
+                "limits": {
+                  "temp_c": {
+                    "low": 18.0,
+                    "high": 26.0
+                  },
+                  "humidity_pct": {
+                    "low": 30.0,
+                    "high": 60.0
+                  }
+                },
+                "published_safe_bounds": {
+                  "temp_c": {
+                    "low": [
+                      15.0,
+                      21.0
+                    ],
+                    "high": [
+                      24.0,
+                      30.0
+                    ]
+                  },
+                  "humidity_pct": {
+                    "low": [
+                      20.0,
+                      40.0
+                    ],
+                    "high": [
+                      55.0,
+                      70.0
+                    ]
+                  }
+                }
+              }
+            }
+          ],
+          "prompt_tokens": 804,
+          "completion_tokens": 23,
+          "token_source": "usage"
+        },
+        {
+          "round": 2,
+          "finish_reason": "stop",
+          "content": "The requested high limit of 90 for humidity_pct is outside the published safe bound of 55 to 70, so the alarm limit was not changed.",
+          "calls": [],
+          "prompt_tokens": 985,
+          "completion_tokens": 36,
+          "token_source": "usage"
+        }
+      ]
+    }
+  ],
+  "n_tasks": 8,
+  "task_successes": 8,
+  "task_success_rate": 1.0,
+  "incorrect_tool_calls": 0,
+  "e2e_latency_seconds": 75.413,
+  "e2e_latency_mean_seconds": 9.427,
+  "tokens_consumed": 14681,
+  "prompt_tokens": 14205,
+  "completion_tokens": 476,
+  "complete": true
+}
