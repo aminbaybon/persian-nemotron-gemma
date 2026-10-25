@@ -1,0 +1,2930 @@
+[
+  {
+    "id": "simple_python_376",
+    "category": "simple_python",
+    "question": "What time is it currently in London, UK in 24 hour format?",
+    "functions": [
+      {
+        "name": "time_zone_converter",
+        "description": "Retrieve the current time of a specific city.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "city": {
+              "type": "string",
+              "description": "The city you want to know the current time for."
+            },
+            "country": {
+              "type": "string",
+              "description": "The country where the city is located."
+            },
+            "display_format": {
+              "type": "string",
+              "description": "The time display format: '12h' or '24h'. Default is '24h'."
+            }
+          },
+          "required": [
+            "city",
+            "country"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "time_zone_converter": {
+          "city": [
+            "London"
+          ],
+          "country": [
+            "UK",
+            "United Kingdom"
+          ],
+          "display_format": [
+            "24h",
+            "24 hour"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_300",
+    "category": "simple_python",
+    "question": "Calculate the duration between two notes of 440Hz and 880Hz frequency based on harmonic rhythm.",
+    "functions": [
+      {
+        "name": "music.calculate_note_duration",
+        "description": "Calculate the duration between two notes based on their frequencies and harmonic rhythm.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "first_note_frequency": {
+              "type": "integer",
+              "description": "The frequency of the first note in Hz."
+            },
+            "second_note_frequency": {
+              "type": "integer",
+              "description": "The frequency of the second note in Hz."
+            },
+            "tempo": {
+              "type": "integer",
+              "description": "The tempo of the music in beats per minute. Defaults to 120 beats per minute."
+            }
+          },
+          "required": [
+            "first_note_frequency",
+            "second_note_frequency"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "music.calculate_note_duration": {
+          "first_note_frequency": [
+            440
+          ],
+          "second_note_frequency": [
+            880
+          ],
+          "tempo": [
+            "",
+            120
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_247",
+    "category": "simple_python",
+    "question": "What was Albert Einstein's contribution to science on March 17, 1915?",
+    "functions": [
+      {
+        "name": "historical_contrib.get_contrib",
+        "description": "Retrieve historical contribution made by a scientist on a specific date.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "scientist": {
+              "type": "string",
+              "description": "The scientist whose contributions need to be searched."
+            },
+            "date": {
+              "type": "string",
+              "description": "The date when the contribution was made in yyyy-mm-dd format."
+            },
+            "category": {
+              "type": "string",
+              "description": "The field of the contribution, such as 'Physics' or 'Chemistry'. Default is 'all'."
+            }
+          },
+          "required": [
+            "scientist",
+            "date"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "historical_contrib.get_contrib": {
+          "scientist": [
+            "Albert Einstein"
+          ],
+          "date": [
+            "1915-03-17",
+            "03/17/1915",
+            "Mar.17,1915"
+          ],
+          "category": [
+            "",
+            "all"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_180",
+    "category": "simple_python",
+    "question": "Find the lawsuits filed against the company Google in California in the year 2020.",
+    "functions": [
+      {
+        "name": "lawsuits_search",
+        "description": "Search for lawsuits against a specific company within a specific time and location.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "company_name": {
+              "type": "string",
+              "description": "The name of the company."
+            },
+            "location": {
+              "type": "string",
+              "description": "The location where the lawsuit was filed."
+            },
+            "year": {
+              "type": "integer",
+              "description": "The year when the lawsuit was filed."
+            },
+            "case_type": {
+              "type": "string",
+              "description": "The type of the case. Options include: 'civil', 'criminal', 'small_claims', etc. Default is 'all'."
+            }
+          },
+          "required": [
+            "company_name",
+            "location",
+            "year"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "lawsuits_search": {
+          "company_name": [
+            "Google"
+          ],
+          "location": [
+            "California",
+            "CA"
+          ],
+          "year": [
+            2020
+          ],
+          "case_type": [
+            "",
+            "all"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_47",
+    "category": "simple_python",
+    "question": "Find the boiling point and melting point of water under the sea level of 5000m.",
+    "functions": [
+      {
+        "name": "get_boiling_melting_points",
+        "description": "Retrieve the boiling point and melting point of a substance based on its name and the sea level.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "substance": {
+              "type": "string",
+              "description": "The name of the substance."
+            },
+            "sea_level": {
+              "type": "integer",
+              "description": "The sea level in meters."
+            }
+          },
+          "required": [
+            "substance",
+            "sea_level"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "get_boiling_melting_points": {
+          "substance": [
+            "water"
+          ],
+          "sea_level": [
+            5000
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_283",
+    "category": "simple_python",
+    "question": "Find the price of a used Gibson Les Paul guitar in excellent condition in the Chicago area.",
+    "functions": [
+      {
+        "name": "guitar_price.find",
+        "description": "Retrieve the price of a specific used guitar model based on its condition and location.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "model": {
+              "type": "string",
+              "description": "The model of the guitar."
+            },
+            "condition": {
+              "type": "string",
+              "enum": [
+                "Poor",
+                "Good",
+                "Excellent"
+              ],
+              "description": "The condition of the guitar."
+            },
+            "location": {
+              "type": "string",
+              "description": "The location where the guitar is being sold."
+            }
+          },
+          "required": [
+            "model",
+            "condition",
+            "location"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "guitar_price.find": {
+          "model": [
+            "Gibson Les Paul"
+          ],
+          "condition": [
+            "Excellent"
+          ],
+          "location": [
+            "Chicago",
+            "Chicago, IL",
+            "Chicago, Illinois"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_395",
+    "category": "simple_python",
+    "question": "Find the nearest parking lot within 2 miles of Central Park in New York.",
+    "functions": [
+      {
+        "name": "parking_lot.find_nearest",
+        "description": "Locate the nearest parking lot based on a specific location and radius.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The reference location e.g. Central Park, NY"
+            },
+            "radius": {
+              "type": "integer",
+              "description": "The maximum distance from the location in miles. Default is 5 miles"
+            },
+            "type": {
+              "type": "string",
+              "description": "The type of parking lot. Default is 'public'."
+            }
+          },
+          "required": [
+            "location",
+            "radius"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "parking_lot.find_nearest": {
+          "location": [
+            "Central Park, NY"
+          ],
+          "radius": [
+            2
+          ],
+          "type": [
+            "public",
+            ""
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_331",
+    "category": "simple_python",
+    "question": "Find the top chess players in New York with a rating above 2300.",
+    "functions": [
+      {
+        "name": "board_game.chess.get_top_players",
+        "description": "Find top chess players in a location based on rating.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The city you want to find the players from."
+            },
+            "minimum_rating": {
+              "type": "integer",
+              "description": "Minimum rating to filter the players."
+            },
+            "number_of_players": {
+              "type": "integer",
+              "default": 10,
+              "description": "Number of players you want to retrieve, default value is 10"
+            }
+          },
+          "required": [
+            "location",
+            "minimum_rating"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "board_game.chess.get_top_players": {
+          "location": [
+            "New York",
+            "New York City",
+            "New York City, NY",
+            "NYC"
+          ],
+          "minimum_rating": [
+            2300
+          ],
+          "number_of_players": [
+            "",
+            10
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_191",
+    "category": "simple_python",
+    "question": "Find me the 5 tallest mountains within 50km of Denver, Colorado.",
+    "functions": [
+      {
+        "name": "locate_tallest_mountains",
+        "description": "Find the tallest mountains within a specified radius of a location.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The city from which to calculate distance."
+            },
+            "radius": {
+              "type": "integer",
+              "description": "The radius within which to find mountains, measured in kilometers."
+            },
+            "amount": {
+              "type": "integer",
+              "description": "The number of mountains to find, listed from tallest to smallest."
+            }
+          },
+          "required": [
+            "location",
+            "radius",
+            "amount"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "locate_tallest_mountains": {
+          "location": [
+            "Denver, Colorado",
+            "Denver",
+            "CO"
+          ],
+          "radius": [
+            50
+          ],
+          "amount": [
+            5
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_298",
+    "category": "simple_python",
+    "question": "What key signature does C# major have?",
+    "functions": [
+      {
+        "name": "music_theory.key_signature",
+        "description": "Return the key signature of a major or minor scale.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "key": {
+              "type": "string",
+              "description": "The root of the scale, e.g., 'C', 'F#', 'Ab'."
+            },
+            "scale_type": {
+              "type": "string",
+              "enum": [
+                "major",
+                "minor"
+              ],
+              "description": "Type of the scale, either 'major' or 'minor'. Default is 'major'."
+            }
+          },
+          "required": [
+            "key"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "music_theory.key_signature": {
+          "key": [
+            "C#"
+          ],
+          "scale_type": [
+            "major",
+            ""
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_368",
+    "category": "simple_python",
+    "question": "How much time will it take to cook a roast chicken of 1.5 kg?",
+    "functions": [
+      {
+        "name": "calculate_cooking_time",
+        "description": "Calculate the cooking time for a roast chicken.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "weight_kg": {
+              "type": "float",
+              "description": "The weight of the chicken in kilograms."
+            },
+            "cooking_method": {
+              "type": "string",
+              "description": "The method of cooking, defaults to 'roast'."
+            },
+            "temp_celsius": {
+              "type": "integer",
+              "description": "The cooking temperature in degrees celsius, defaults to 180."
+            }
+          },
+          "required": [
+            "weight_kg"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "calculate_cooking_time": {
+          "weight_kg": [
+            1.5
+          ],
+          "cooking_method": [
+            "",
+            "roast"
+          ],
+          "temp_celsius": [
+            "",
+            180
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "simple_python_43",
+    "category": "simple_python",
+    "question": "Calculate the magnetic field strength 10 meters away from a long wire carrying a current of 20 Amperes.",
+    "functions": [
+      {
+        "name": "calculate_magnetic_field_strength",
+        "description": "Calculate the magnetic field strength at a point a certain distance away from a long wire carrying a current.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "current": {
+              "type": "integer",
+              "description": "The current flowing through the wire in Amperes."
+            },
+            "distance": {
+              "type": "integer",
+              "description": "The perpendicular distance from the wire to the point where the magnetic field is being calculated."
+            },
+            "permeability": {
+              "type": "float",
+              "description": "The permeability of the medium. Default is 12.57e-7 (Vacuum Permeability)."
+            }
+          },
+          "required": [
+            "current",
+            "distance"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "calculate_magnetic_field_strength": {
+          "current": [
+            20
+          ],
+          "distance": [
+            10
+          ],
+          "permeability": [
+            "",
+            1.257e-06
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_44",
+    "category": "multiple",
+    "question": "How much will I weigh on Mars if my weight on Earth is 70 kg?",
+    "functions": [
+      {
+        "name": "unit_conversion.convert",
+        "description": "Convert a value from one unit to another.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "value": {
+              "type": "float",
+              "description": "The value to be converted."
+            },
+            "from_unit": {
+              "type": "string",
+              "description": "The unit to convert from."
+            },
+            "to_unit": {
+              "type": "string",
+              "description": "The unit to convert to."
+            }
+          },
+          "required": [
+            "value",
+            "from_unit",
+            "to_unit"
+          ]
+        }
+      },
+      {
+        "name": "currency_conversion",
+        "description": "Convert a value from one currency to another.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "amount": {
+              "type": "float",
+              "description": "The amount to be converted."
+            },
+            "from_currency": {
+              "type": "string",
+              "description": "The currency to convert from."
+            },
+            "to_currency": {
+              "type": "string",
+              "description": "The currency to convert to."
+            }
+          },
+          "required": [
+            "amount",
+            "from_currency",
+            "to_currency"
+          ]
+        }
+      },
+      {
+        "name": "calculate.weight_in_space",
+        "description": "Calculate your weight on different planets given your weight on earth",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "weight_earth_kg": {
+              "type": "integer",
+              "description": "Your weight on Earth in Kilograms."
+            },
+            "planet": {
+              "type": "string",
+              "description": "The planet you want to know your weight on."
+            }
+          },
+          "required": [
+            "weight_earth_kg",
+            "planet"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "calculate.weight_in_space": {
+          "weight_earth_kg": [
+            70
+          ],
+          "planet": [
+            "Mars"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_37",
+    "category": "multiple",
+    "question": "Find the final velocity of an object thrown up at 40 m/s after 6 seconds.",
+    "functions": [
+      {
+        "name": "physics.wave_velocity",
+        "description": "Calculate the velocity of a wave based on its frequency and wavelength.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "frequency": {
+              "type": "float",
+              "description": "The frequency of the wave in Hz."
+            },
+            "wavelength": {
+              "type": "float",
+              "description": "The wavelength of the wave in m."
+            }
+          },
+          "required": [
+            "frequency",
+            "wavelength"
+          ]
+        }
+      },
+      {
+        "name": "kinematics.final_velocity",
+        "description": "Find the final velocity of an object moving under constant acceleration.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "initial_velocity": {
+              "type": "integer",
+              "description": "The initial velocity of the object in m/s."
+            },
+            "time": {
+              "type": "integer",
+              "description": "The time in seconds the object has been moving."
+            },
+            "acceleration": {
+              "type": "float",
+              "description": "The acceleration of the object in m/s^2. Default value is -9.81 (Earth's gravity)"
+            }
+          },
+          "required": [
+            "initial_velocity",
+            "time"
+          ]
+        }
+      },
+      {
+        "name": "kinematics.distance",
+        "description": "Find the distance traveled by an object moving under constant acceleration.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "initial_velocity": {
+              "type": "float",
+              "description": "The initial velocity of the object in m/s."
+            },
+            "time": {
+              "type": "integer",
+              "description": "The time in seconds the object has been moving."
+            },
+            "acceleration": {
+              "type": "float",
+              "description": "The acceleration of the object in m/s^2. Default value is -9.81 (Earth's gravity)"
+            }
+          },
+          "required": [
+            "initial_velocity",
+            "time"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "kinematics.final_velocity": {
+          "initial_velocity": [
+            40
+          ],
+          "time": [
+            6
+          ],
+          "acceleration": [
+            -9.81,
+            ""
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_85",
+    "category": "multiple",
+    "question": "Get the soccer scores for Real Madrid games in La Liga for the last 5 rounds.",
+    "functions": [
+      {
+        "name": "basketball_scores.get_scores",
+        "description": "Retrieve basketball scores for a specific team and league within a certain range of rounds.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "team": {
+              "type": "string",
+              "description": "The basketball team whose scores are to be retrieved."
+            },
+            "league": {
+              "type": "string",
+              "description": "The league in which the team competes."
+            },
+            "rounds": {
+              "type": "integer",
+              "description": "Number of past rounds for which to retrieve the scores."
+            }
+          },
+          "required": [
+            "team",
+            "league",
+            "rounds"
+          ]
+        }
+      },
+      {
+        "name": "soccer_scores.get_scores",
+        "description": "Retrieve soccer scores for a specific team and league within a certain range of rounds.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "team": {
+              "type": "string",
+              "description": "The soccer team whose scores are to be retrieved."
+            },
+            "league": {
+              "type": "string",
+              "description": "The league in which the team competes."
+            },
+            "rounds": {
+              "type": "integer",
+              "description": "Number of past rounds for which to retrieve the scores."
+            }
+          },
+          "required": [
+            "team",
+            "league",
+            "rounds"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "soccer_scores.get_scores": {
+          "team": [
+            "Real Madrid"
+          ],
+          "league": [
+            "La Liga"
+          ],
+          "rounds": [
+            5
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_0",
+    "category": "multiple",
+    "question": "Can I find the dimensions and properties of a triangle, if I know its three sides are 5 units, 4 units and 3 units long?",
+    "functions": [
+      {
+        "name": "triangle_properties.get",
+        "description": "Retrieve the dimensions, such as area and perimeter, of a triangle if lengths of three sides are given.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "side1": {
+              "type": "integer",
+              "description": "The length of first side of the triangle."
+            },
+            "side2": {
+              "type": "integer",
+              "description": "The length of second side of the triangle."
+            },
+            "side3": {
+              "type": "integer",
+              "description": "The length of third side of the triangle."
+            },
+            "get_area": {
+              "type": "boolean",
+              "description": "A flag to determine whether to calculate the area of triangle. Default is true.",
+              "default": true,
+              "optional": true
+            },
+            "get_perimeter": {
+              "type": "boolean",
+              "description": "A flag to determine whether to calculate the perimeter of triangle. Default is true.",
+              "default": true,
+              "optional": true
+            },
+            "get_angles": {
+              "type": "boolean",
+              "description": "A flag to determine whether to calculate the internal angles of triangle. Default is true.",
+              "default": true,
+              "optional": true
+            }
+          },
+          "required": [
+            "side1",
+            "side2",
+            "side3"
+          ]
+        }
+      },
+      {
+        "name": "circle_properties.get",
+        "description": "Retrieve the dimensions, such as area and circumference, of a circle if radius is given.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "radius": {
+              "type": "float",
+              "description": "The length of radius of the circle."
+            },
+            "get_area": {
+              "type": "boolean",
+              "description": "A flag to determine whether to calculate the area of circle. Default is true.",
+              "default": true,
+              "optional": true
+            },
+            "get_circumference": {
+              "type": "boolean",
+              "description": "A flag to determine whether to calculate the circumference of circle. Default is true.",
+              "default": true,
+              "optional": true
+            }
+          },
+          "required": [
+            "radius"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "triangle_properties.get": {
+          "side1": [
+            5
+          ],
+          "side2": [
+            4
+          ],
+          "side3": [
+            3
+          ],
+          "get_area": [
+            "",
+            true
+          ],
+          "get_perimeter": [
+            "",
+            true
+          ],
+          "get_angles": [
+            "",
+            true
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_76",
+    "category": "multiple",
+    "question": "I want to order a custom bronze sculpture of a horse. What material options are available?",
+    "functions": [
+      {
+        "name": "painting.create_custom",
+        "description": "Order a custom painting with your preferred color.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "subject": {
+              "type": "string",
+              "description": "The subject of the painting, e.g. horse"
+            },
+            "color": {
+              "type": "string",
+              "enum": [
+                "Red",
+                "Blue",
+                "Green",
+                "Yellow",
+                "Black"
+              ],
+              "description": "Preferred main color for the painting."
+            },
+            "size": {
+              "type": "integer",
+              "description": "The desired size for the painting in inches. This parameter is optional. Default 12"
+            }
+          },
+          "required": [
+            "subject",
+            "color"
+          ]
+        }
+      },
+      {
+        "name": "sculpture.create_custom",
+        "description": "Order a custom sculpture with your preferred material.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "item": {
+              "type": "string",
+              "description": "The subject of the sculpture, e.g. horse"
+            },
+            "material": {
+              "type": "string",
+              "enum": [
+                "Bronze",
+                "Marble",
+                "Terracotta",
+                "Wood",
+                "Stone"
+              ],
+              "description": "Preferred material for the sculpture."
+            },
+            "size": {
+              "type": "integer",
+              "description": "The desired size for the sculpture in inches. This parameter is optional. Default 12"
+            }
+          },
+          "required": [
+            "item",
+            "material"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "sculpture.create_custom": {
+          "item": [
+            "horse",
+            "Horse"
+          ],
+          "material": [
+            "Bronze",
+            "bronze"
+          ],
+          "size": [
+            "",
+            12
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_109",
+    "category": "multiple",
+    "question": "What are the names of proteins found in the plasma membrane?",
+    "functions": [
+      {
+        "name": "find_exhibition",
+        "description": "Locate the most popular exhibitions based on criteria like location, time, art form, and user ratings.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The city where the exhibition is held, e.g., New York, NY."
+            },
+            "art_form": {
+              "type": "string",
+              "description": "The form of art the exhibition is displaying e.g., sculpture."
+            },
+            "month": {
+              "type": "string",
+              "description": "The month of exhibition. Default value will return upcoming events."
+            },
+            "user_ratings": {
+              "type": "string",
+              "enum": [
+                "low",
+                "average",
+                "high"
+              ],
+              "description": "Select exhibitions with user rating threshold. Default is 'high'"
+            }
+          },
+          "required": [
+            "location",
+            "art_form"
+          ]
+        }
+      },
+      {
+        "name": "mutation_type.find",
+        "description": "Finds the type of a genetic mutation based on its SNP (Single Nucleotide Polymorphism) ID.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "snp_id": {
+              "type": "string",
+              "description": "The ID of the Single Nucleotide Polymorphism (SNP) mutation."
+            },
+            "species": {
+              "type": "string",
+              "description": "Species in which the SNP occurs, default is 'Homo sapiens' (Humans)."
+            }
+          },
+          "required": [
+            "snp_id"
+          ]
+        }
+      },
+      {
+        "name": "cellbio.get_proteins",
+        "description": "Get the list of proteins in a specific cell compartment.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "cell_compartment": {
+              "type": "string",
+              "description": "The specific cell compartment."
+            },
+            "include_description": {
+              "type": "boolean",
+              "description": "Set true if you want a brief description of each protein.",
+              "default": "false"
+            }
+          },
+          "required": [
+            "cell_compartment"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "cellbio.get_proteins": {
+          "cell_compartment": [
+            "plasma membrane"
+          ],
+          "include_description": [
+            false,
+            ""
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_199",
+    "category": "multiple",
+    "question": "Predict the growth of forest in Yellowstone for the next 5 years including human impact.",
+    "functions": [
+      {
+        "name": "forest_growth_forecast",
+        "description": "Predicts the forest growth over the next N years based on current trends.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The location where you want to predict forest growth."
+            },
+            "years": {
+              "type": "integer",
+              "description": "The number of years for the forecast."
+            },
+            "include_human_impact": {
+              "type": "boolean",
+              "description": "Whether or not to include the impact of human activities in the forecast. If not provided, defaults to false."
+            }
+          },
+          "required": [
+            "location",
+            "years"
+          ]
+        }
+      },
+      {
+        "name": "db_fetch_records",
+        "description": "Fetch records from a specified database table based on certain conditions.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "database_name": {
+              "type": "string",
+              "description": "The name of the database."
+            },
+            "table_name": {
+              "type": "string",
+              "description": "The name of the table from which records need to be fetched."
+            },
+            "conditions": {
+              "type": "dict",
+              "properties": {
+                "department": {
+                  "type": "string",
+                  "description": "The name of the department of students."
+                },
+                "school": {
+                  "type": "string",
+                  "description": "The name of the school students are enrolled in."
+                }
+              },
+              "description": "The conditions based on which records are to be fetched."
+            },
+            "fetch_limit": {
+              "type": "integer",
+              "description": "Limits the number of records to be fetched. If left empty, it fetches all records. (Optional) Default is 0."
+            }
+          },
+          "required": [
+            "database_name",
+            "table_name",
+            "conditions"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "forest_growth_forecast": {
+          "location": [
+            "Yellowstone",
+            "yellowstone"
+          ],
+          "years": [
+            5
+          ],
+          "include_human_impact": [
+            true
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_156",
+    "category": "multiple",
+    "question": "What was Albert Einstein's contribution to science on March 17, 1915?",
+    "functions": [
+      {
+        "name": "historical_contrib.get_contrib",
+        "description": "Retrieve historical contribution made by a scientist on a specific date.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "scientist": {
+              "type": "string",
+              "description": "The scientist whose contributions need to be searched."
+            },
+            "date": {
+              "type": "string",
+              "description": "The date when the contribution was made in yyyy-mm-dd format."
+            },
+            "category": {
+              "type": "string",
+              "description": "The field of the contribution, such as 'Physics' or 'Chemistry'. Default is all fields."
+            }
+          },
+          "required": [
+            "scientist",
+            "date"
+          ]
+        }
+      },
+      {
+        "name": "music.calculate_note_duration",
+        "description": "Calculate the duration between two notes based on their frequencies and harmonic rhythm.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "first_note_frequency": {
+              "type": "float",
+              "description": "The frequency of the first note in Hz."
+            },
+            "second_note_frequency": {
+              "type": "float",
+              "description": "The frequency of the second note in Hz."
+            },
+            "tempo": {
+              "type": "integer",
+              "description": "The tempo of the music in beats per minute. Defaults to 120 beats per minute."
+            }
+          },
+          "required": [
+            "first_note_frequency",
+            "second_note_frequency"
+          ]
+        }
+      },
+      {
+        "name": "math.gcd",
+        "description": "Calculate the greatest common divisor of two integers.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "num1": {
+              "type": "integer",
+              "description": "First number."
+            },
+            "num2": {
+              "type": "integer",
+              "description": "Second number."
+            }
+          },
+          "required": [
+            "num1",
+            "num2"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "historical_contrib.get_contrib": {
+          "scientist": [
+            "Albert Einstein"
+          ],
+          "date": [
+            "1915-03-17",
+            "03/17/1915",
+            "Mar.17,1915"
+          ],
+          "category": [
+            "",
+            "all"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_15",
+    "category": "multiple",
+    "question": "How much is the potential of the Solar farm at location with coordinates [43.653225, -79.383186] in December, given that it has a total solar panel area of 80000 sq ft?",
+    "functions": [
+      {
+        "name": "solarFarm.potential",
+        "description": "Estimate the energy output of a solar farm given its location and panel area for a particular month.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "float"
+              },
+              "description": "The geographic coordinates of the location of the solar farm."
+            },
+            "panelArea": {
+              "type": "integer",
+              "description": "The total solar panel area in square feet at the location."
+            },
+            "month": {
+              "type": "string",
+              "description": "The month for which to calculate the potential energy output. Default to January",
+              "optional": true
+            }
+          },
+          "required": [
+            "coordinates",
+            "panelArea"
+          ]
+        }
+      },
+      {
+        "name": "windFarm.potential",
+        "description": "Estimate the energy output of a wind farm given its location and turbine count for a particular month.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "coordinates": {
+              "type": "array",
+              "items": {
+                "type": "float"
+              },
+              "description": "The geographic coordinates of the location of the wind farm."
+            },
+            "turbineCount": {
+              "type": "integer",
+              "description": "The total number of wind turbines at the location."
+            },
+            "month": {
+              "type": "string",
+              "description": "The month for which to calculate the potential energy output. Default to January",
+              "optional": true
+            }
+          },
+          "required": [
+            "coordinates",
+            "turbineCount"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "solarFarm.potential": {
+          "coordinates": [
+            [
+              43.653225,
+              -79.383186
+            ]
+          ],
+          "panelArea": [
+            80000
+          ],
+          "month": [
+            "December",
+            "Dec"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_35",
+    "category": "multiple",
+    "question": "Calculate the greatest common divisor between 128 and 256.",
+    "functions": [
+      {
+        "name": "calculate_lcm",
+        "description": "Calculate the least common multiple (lcm) between two integers.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "num1": {
+              "type": "integer",
+              "description": "First number to calculate lcm for."
+            },
+            "num2": {
+              "type": "integer",
+              "description": "Second number to calculate lcm for."
+            },
+            "method": {
+              "type": "string",
+              "description": "The specific method to use in the calculation. Supported values: 'standard', 'reduced'. Default 'standard'"
+            }
+          },
+          "required": [
+            "num1",
+            "num2"
+          ]
+        }
+      },
+      {
+        "name": "calculate_gcd",
+        "description": "Calculate the greatest common divisor (gcd) between two integers.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "num1": {
+              "type": "integer",
+              "description": "First number to calculate gcd for."
+            },
+            "num2": {
+              "type": "integer",
+              "description": "Second number to calculate gcd for."
+            },
+            "algorithm": {
+              "type": "string",
+              "description": "The specific algorithm to use in the calculation. Supported values: 'euclidean', 'binary'. Default 'euclidean'",
+              "enum": [
+                "euclidean",
+                "binary"
+              ]
+            }
+          },
+          "required": [
+            "num1",
+            "num2"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "calculate_gcd": {
+          "num1": [
+            128
+          ],
+          "num2": [
+            256
+          ],
+          "algorithm": [
+            "euclidean",
+            ""
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_193",
+    "category": "multiple",
+    "question": "Get me the travel distance and duration from the Eiffel Tower to the Louvre Museum",
+    "functions": [
+      {
+        "name": "math.factorial",
+        "description": "Calculate the factorial of a given number.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "number": {
+              "type": "float",
+              "description": "The number for which factorial needs to be calculated."
+            }
+          },
+          "required": [
+            "number"
+          ]
+        }
+      },
+      {
+        "name": "grocery_store.find_best",
+        "description": "Find the closest high-rated grocery stores based on certain product availability.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "my_location": {
+              "type": "string",
+              "description": "The current location of the user."
+            },
+            "rating": {
+              "type": "float",
+              "description": "The minimum required store rating. Default is 0.0."
+            },
+            "products": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Required products in a list."
+            }
+          },
+          "required": [
+            "my_location",
+            "products"
+          ]
+        }
+      },
+      {
+        "name": "restaurant.find_nearby",
+        "description": "Locate nearby restaurants based on specific criteria like cuisine type.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The city and state, e.g. Seattle, WA"
+            },
+            "cuisine": {
+              "type": "string",
+              "description": "Preferred type of cuisine in restaurant."
+            },
+            "max_distance": {
+              "type": "float",
+              "description": "Maximum distance (in miles) within which to search for restaurants. Default is 5."
+            }
+          },
+          "required": [
+            "location",
+            "cuisine"
+          ]
+        }
+      },
+      {
+        "name": "maps.get_distance_duration",
+        "description": "Retrieve the travel distance and estimated travel time from one location to another via car",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "start_location": {
+              "type": "string",
+              "description": "Starting point of the journey"
+            },
+            "end_location": {
+              "type": "string",
+              "description": "Ending point of the journey"
+            },
+            "traffic": {
+              "type": "boolean",
+              "description": "If true, considers current traffic. Default is false."
+            }
+          },
+          "required": [
+            "start_location",
+            "end_location"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "maps.get_distance_duration": {
+          "start_location": [
+            "Eiffel Tower"
+          ],
+          "end_location": [
+            "Louvre Museum"
+          ],
+          "traffic": [
+            "",
+            false
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "multiple_140",
+    "category": "multiple",
+    "question": "Find the lawsuits filed against the company Google in California in the year 2020.",
+    "functions": [
+      {
+        "name": "lawsuits_search",
+        "description": "Search for lawsuits against a specific company within a specific time and location.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "company_name": {
+              "type": "string",
+              "description": "The name of the company."
+            },
+            "location": {
+              "type": "string",
+              "description": "The location where the lawsuit was filed."
+            },
+            "year": {
+              "type": "integer",
+              "description": "The year when the lawsuit was filed."
+            },
+            "case_type": {
+              "type": "string",
+              "description": "The type of the case. Options include: 'civil', 'criminal', 'small_claims', etc. If not specified, search for all types. Default is 'all'"
+            }
+          },
+          "required": [
+            "company_name",
+            "location",
+            "year"
+          ]
+        }
+      },
+      {
+        "name": "hilton_hotel.check_availability",
+        "description": "Check hotel availability for a specific location and time frame.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The city where you want to check hotel availability."
+            },
+            "check_in_date": {
+              "type": "string",
+              "description": "The check-in date in the format YYYY-MM-DD."
+            },
+            "check_out_date": {
+              "type": "string",
+              "description": "The check-out date in the format YYYY-MM-DD."
+            },
+            "no_of_adults": {
+              "type": "integer",
+              "description": "The number of adults for the hotel booking."
+            },
+            "hotel_chain": {
+              "type": "string",
+              "description": "The hotel chain where you want to book the hotel.",
+              "default": "Hilton"
+            }
+          },
+          "required": [
+            "location",
+            "check_in_date",
+            "check_out_date",
+            "no_of_adults"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "lawsuits_search": {
+          "company_name": [
+            "Google"
+          ],
+          "location": [
+            "California",
+            "CA"
+          ],
+          "year": [
+            2020
+          ],
+          "case_type": [
+            "",
+            "all"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_15",
+    "category": "parallel",
+    "question": "What will be the capital gains tax for a short term capital gains of $15000, long term gains of $25000 in the state of California and $20000 short term, $50000 long term in Florida?",
+    "functions": [
+      {
+        "name": "calculate_capital_gains_tax",
+        "description": "Calculate the capital gains tax for a given gains type and amount",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "short_term_gain": {
+              "type": "integer",
+              "description": "The short term capital gain amount."
+            },
+            "long_term_gain": {
+              "type": "integer",
+              "description": "The long term capital gain amount."
+            },
+            "state": {
+              "type": "string",
+              "description": "The state where the income is generated.",
+              "default": "federal"
+            }
+          },
+          "required": [
+            "short_term_gain",
+            "long_term_gain"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "calculate_capital_gains_tax": {
+          "short_term_gain": [
+            15000
+          ],
+          "long_term_gain": [
+            25000
+          ],
+          "state": [
+            "CA",
+            "California"
+          ]
+        }
+      },
+      {
+        "calculate_capital_gains_tax": {
+          "short_term_gain": [
+            20000
+          ],
+          "long_term_gain": [
+            50000
+          ],
+          "state": [
+            "FL",
+            "Florida"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_10",
+    "category": "parallel",
+    "question": "Compute the Pythagorean Theorem of two side lengths: 3 and 4, 5 and 12.",
+    "functions": [
+      {
+        "name": "math.pythagoras",
+        "description": "Calculates the hypotenuse of a right triangle based on the lengths of the other two sides.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "a": {
+              "type": "integer",
+              "description": "Length of one of the sides of a right triangle."
+            },
+            "b": {
+              "type": "integer",
+              "description": "Length of the other side of a right triangle."
+            }
+          },
+          "required": [
+            "a",
+            "b"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "math.pythagoras": {
+          "a": [
+            3
+          ],
+          "b": [
+            4
+          ]
+        }
+      },
+      {
+        "math.pythagoras": {
+          "a": [
+            5
+          ],
+          "b": [
+            12
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_31",
+    "category": "parallel",
+    "question": "What was the Treaty of Paris about? Also, what was the importance of Magna Carta in history?",
+    "functions": [
+      {
+        "name": "history_fact.fetch",
+        "description": "Retrieve facts about historical events or documents",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "event": {
+              "type": "string",
+              "description": "The historical event or document you want to know about."
+            },
+            "depth": {
+              "type": "string",
+              "description": "The depth of information required. Choices are 'brief' or 'detailed'.",
+              "default": "detailed"
+            },
+            "year": {
+              "type": "integer",
+              "description": "The year of the event/document. default is 0"
+            }
+          },
+          "required": [
+            "event"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "history_fact.fetch": {
+          "event": [
+            "Treaty of Paris"
+          ],
+          "depth": [
+            "",
+            "detailed"
+          ],
+          "year": [
+            "",
+            0
+          ]
+        }
+      },
+      {
+        "history_fact.fetch": {
+          "event": [
+            "Magna Carta"
+          ],
+          "depth": [
+            "",
+            "detailed"
+          ],
+          "year": [
+            "",
+            0
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_104",
+    "category": "parallel",
+    "question": "\"In a thermodynamics experiment, you are tasked with calculating the entropy change for a process. The process starts at an initial temperature of 300 Kelvin and ends at a final temperature of 350 Kelvin. The heat capacity of the system is 4.18 J/K. The process is isothermal. Can you calculate the entropy change for this process? What if the process is not isothermal, how does the entropy change?\"",
+    "functions": [
+      {
+        "name": "calculate_entropy_change",
+        "description": "Calculate the entropy change for an isothermal and reversible process.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "initial_temp": {
+              "type": "integer",
+              "description": "The initial temperature in Kelvin."
+            },
+            "final_temp": {
+              "type": "integer",
+              "description": "The final temperature in Kelvin."
+            },
+            "heat_capacity": {
+              "type": "float",
+              "description": "The heat capacity in J/K."
+            },
+            "isothermal": {
+              "type": "boolean",
+              "description": "Whether the process is isothermal. Default is True."
+            }
+          },
+          "required": [
+            "initial_temp",
+            "final_temp",
+            "heat_capacity"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "calculate_entropy_change": {
+          "initial_temp": [
+            300
+          ],
+          "final_temp": [
+            350
+          ],
+          "heat_capacity": [
+            4.18
+          ],
+          "isothermal": [
+            true,
+            ""
+          ]
+        }
+      },
+      {
+        "calculate_entropy_change": {
+          "initial_temp": [
+            300
+          ],
+          "final_temp": [
+            350
+          ],
+          "heat_capacity": [
+            4.18
+          ],
+          "isothermal": [
+            false
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_194",
+    "category": "parallel",
+    "question": "Can you find me upcoming jazz events in Los Angeles, CA for the next 14 days and then find the same for rock events in Chicago, IL for the next 10 days and finally find upcoming classical music events in Boston, MA for the next 7 days?",
+    "functions": [
+      {
+        "name": "event_finder.find_upcoming",
+        "description": "Find upcoming events of a specific genre in a given location.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The city and state where the search will take place, e.g. New York, NY."
+            },
+            "genre": {
+              "type": "string",
+              "description": "The genre of events."
+            },
+            "days_ahead": {
+              "type": "integer",
+              "description": "The number of days from now to include in the search.",
+              "default": 7
+            }
+          },
+          "required": [
+            "location",
+            "genre"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "event_finder.find_upcoming": {
+          "location": [
+            "Los Angeles, CA",
+            "LA"
+          ],
+          "genre": [
+            "jazz"
+          ],
+          "days_ahead": [
+            14
+          ]
+        }
+      },
+      {
+        "event_finder.find_upcoming": {
+          "location": [
+            "Chicago, IL"
+          ],
+          "genre": [
+            "rock"
+          ],
+          "days_ahead": [
+            10
+          ]
+        }
+      },
+      {
+        "event_finder.find_upcoming": {
+          "location": [
+            "Boston, MA"
+          ],
+          "genre": [
+            "classical music",
+            "classical"
+          ],
+          "days_ahead": [
+            7,
+            ""
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_113",
+    "category": "parallel",
+    "question": "\"Could you please predict the likelihood of type 2 diabetes for four individuals with the following characteristics: The first person weighs 180 lbs, is 70 inches tall, and has a 'lightly active' lifestyle. The second person weighs 200 lbs, is 65 inches tall, and is 'very active'. The third person weighs 150 lbs, is 72 inches tall, and is 'moderately active'. The fourth person weighs 220 lbs, is 68 inches tall, and is 'extra active'.\"",
+    "functions": [
+      {
+        "name": "diabetes_prediction",
+        "description": "Predict the likelihood of diabetes type 2 based on a person's weight and height.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "weight": {
+              "type": "integer",
+              "description": "Weight of the person in lbs."
+            },
+            "height": {
+              "type": "integer",
+              "description": "Height of the person in inches."
+            },
+            "activity_level": {
+              "type": "string",
+              "enum": [
+                "sedentary",
+                "lightly active",
+                "moderately active",
+                "very active",
+                "extra active"
+              ],
+              "description": "Physical activity level of the person."
+            }
+          },
+          "required": [
+            "weight",
+            "height",
+            "activity_level"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "diabetes_prediction": {
+          "weight": [
+            180
+          ],
+          "height": [
+            70
+          ],
+          "activity_level": [
+            "lightly active"
+          ]
+        }
+      },
+      {
+        "diabetes_prediction": {
+          "weight": [
+            200
+          ],
+          "height": [
+            65
+          ],
+          "activity_level": [
+            "very active"
+          ]
+        }
+      },
+      {
+        "diabetes_prediction": {
+          "weight": [
+            150
+          ],
+          "height": [
+            72
+          ],
+          "activity_level": [
+            "moderately active"
+          ]
+        }
+      },
+      {
+        "diabetes_prediction": {
+          "weight": [
+            220
+          ],
+          "height": [
+            68
+          ],
+          "activity_level": [
+            "extra active"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_66",
+    "category": "parallel",
+    "question": "What is the total area of three circles, where the first circle has a radius of 5 meters, the second circle has a radius of 10 meters, and the third circle has a radius of 15 meters, all measured in meters?",
+    "functions": [
+      {
+        "name": "geometry.area_circle",
+        "description": "Calculate the area of a circle given the radius.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "radius": {
+              "type": "integer",
+              "description": "The radius of the circle."
+            },
+            "units": {
+              "type": "string",
+              "description": "The units in which the radius is measured (defaults to meters).",
+              "default": "meters"
+            }
+          },
+          "required": [
+            "radius"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "geometry.area_circle": {
+          "radius": [
+            5
+          ],
+          "units": [
+            "meters",
+            "m",
+            ""
+          ]
+        }
+      },
+      {
+        "geometry.area_circle": {
+          "radius": [
+            10
+          ],
+          "units": [
+            "meters",
+            "m",
+            ""
+          ]
+        }
+      },
+      {
+        "geometry.area_circle": {
+          "radius": [
+            15
+          ],
+          "units": [
+            "meters",
+            "m",
+            ""
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_23",
+    "category": "parallel",
+    "question": "Please calculate the amount of alimony the payor spouse would have to pay to the recipient spouse in California for the next 10 years and 20 years if the payor spouse's monthly gross income is $10,000 and the recipient spouse's monthly gross income is $3,000.",
+    "functions": [
+      {
+        "name": "alimony_calculator.ca.calculate",
+        "description": "Calculate the amount of alimony one spouse would have to pay to the other spouse in the state of California.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "payor_income": {
+              "type": "integer",
+              "description": "The monthly gross income of the payor spouse."
+            },
+            "recipient_income": {
+              "type": "integer",
+              "description": "The monthly gross income of the recipient spouse."
+            },
+            "duration": {
+              "type": "integer",
+              "description": "The duration of the alimony in years."
+            }
+          },
+          "required": [
+            "payor_income",
+            "recipient_income",
+            "duration"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "alimony_calculator.ca.calculate": {
+          "payor_income": [
+            10000
+          ],
+          "recipient_income": [
+            3000
+          ],
+          "duration": [
+            10
+          ]
+        }
+      },
+      {
+        "alimony_calculator.ca.calculate": {
+          "payor_income": [
+            10000
+          ],
+          "recipient_income": [
+            3000
+          ],
+          "duration": [
+            20
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_54",
+    "category": "parallel",
+    "question": "I want to order a large pepperoni pizza and a chicken Caesar salad from Whole Foods at the downtown location and then another order of the same items from the uptown location.",
+    "functions": [
+      {
+        "name": "whole_foods.order",
+        "description": "Order food from Whole Foods",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "Location of Whole Foods."
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of items to order."
+            },
+            "size": {
+              "type": "string",
+              "description": "Size of the order.",
+              "enum": [
+                "small",
+                "medium",
+                "large"
+              ]
+            }
+          },
+          "required": [
+            "location",
+            "items",
+            "size"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "whole_foods.order": {
+          "location": [
+            "downtown",
+            "Downtown"
+          ],
+          "items": [
+            [
+              "pepperoni pizza",
+              "chicken Caesar salad"
+            ],
+            [
+              "chicken Caesar salad",
+              "pepperoni pizza"
+            ]
+          ],
+          "size": [
+            "large"
+          ]
+        }
+      },
+      {
+        "whole_foods.order": {
+          "location": [
+            "uptown",
+            "Uptown"
+          ],
+          "items": [
+            [
+              "pepperoni pizza",
+              "chicken Caesar salad"
+            ],
+            [
+              "chicken Caesar salad",
+              "pepperoni pizza"
+            ]
+          ],
+          "size": [
+            "large"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_61",
+    "category": "parallel",
+    "question": "\"Can you calculate the Euclidean norm, or the length of the vector from the origin to the point (3, 4) using the math.hypot function, and then calculate the Euclidean norm from the origin to the point (6, 8) using the same function? Also, can you calculate the Euclidean norm from the origin to the point (9, 12, 15) using the math.hypot function?\"",
+    "functions": [
+      {
+        "name": "math.hypot",
+        "description": "Calculate the Euclidean norm, sqrt(sum(squares)), the length of the vector from the origin to point (x, y) which is the hypotenuse of the right triangle.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "x": {
+              "type": "integer",
+              "description": "The x-coordinate value."
+            },
+            "y": {
+              "type": "integer",
+              "description": "The y-coordinate value."
+            },
+            "z": {
+              "type": "integer",
+              "description": "Optional. The z-coordinate value. Default is 0."
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "math.hypot": {
+          "x": [
+            3
+          ],
+          "y": [
+            4
+          ],
+          "z": [
+            "",
+            0
+          ]
+        }
+      },
+      {
+        "math.hypot": {
+          "x": [
+            6
+          ],
+          "y": [
+            8
+          ],
+          "z": [
+            "",
+            0
+          ]
+        }
+      },
+      {
+        "math.hypot": {
+          "x": [
+            9
+          ],
+          "y": [
+            12
+          ],
+          "z": [
+            15
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_179",
+    "category": "parallel",
+    "question": "What were the stock prices of Apple Inc. listed on NASDAQ and Microsoft Corporation listed on NYSE for the past 10 and 15 days respectively?",
+    "functions": [
+      {
+        "name": "get_stock_price",
+        "description": "Retrieve the stock price for a specific company and time frame.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "company": {
+              "type": "string",
+              "description": "The ticker symbol of the company."
+            },
+            "days": {
+              "type": "integer",
+              "description": "Number of past days for which the stock price is required."
+            },
+            "exchange": {
+              "type": "string",
+              "description": "The stock exchange where the company is listed, default is NYSE"
+            }
+          },
+          "required": [
+            "company",
+            "days"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "get_stock_price": {
+          "company": [
+            "AAPL"
+          ],
+          "days": [
+            10
+          ],
+          "exchange": [
+            "NASDAQ"
+          ]
+        }
+      },
+      {
+        "get_stock_price": {
+          "company": [
+            "MSFT"
+          ],
+          "days": [
+            15
+          ],
+          "exchange": [
+            "NYSE",
+            ""
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "parallel_147",
+    "category": "parallel",
+    "question": "\"Can you calculate the time it would take for light to travel from Earth to a newly discovered exoplanet that is 4.22 light years away, then to another exoplanet that is 6.1 light years from the first one, and finally back to Earth which is 5.88 light years from the second exoplanet? Assume the speed of light in vacuum is 299792458 m/s.\"",
+    "functions": [
+      {
+        "name": "light_travel_time",
+        "description": "Calculate the time taken for light to travel from a celestial body to another.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "distance_in_light_years": {
+              "type": "float",
+              "description": "The distance between the two celestial bodies in light years."
+            },
+            "speed_of_light": {
+              "type": "integer",
+              "description": "The speed of light in vacuum, in m/s. Default value is 299792458 m/s."
+            }
+          },
+          "required": [
+            "distance_in_light_years"
+          ]
+        }
+      }
+    ],
+    "ground_truth": [
+      {
+        "light_travel_time": {
+          "distance_in_light_years": [
+            4.22
+          ],
+          "speed_of_light": [
+            299792458,
+            ""
+          ]
+        }
+      },
+      {
+        "light_travel_time": {
+          "distance_in_light_years": [
+            6.1
+          ],
+          "speed_of_light": [
+            299792458,
+            ""
+          ]
+        }
+      },
+      {
+        "light_travel_time": {
+          "distance_in_light_years": [
+            5.88
+          ],
+          "speed_of_light": [
+            299792458,
+            ""
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "irrelevance_147",
+    "category": "irrelevance",
+    "question": "Who is the most important prophet in Christianity?",
+    "functions": [
+      {
+        "name": "color_mix.mix_two_colors",
+        "description": "Mix two colors together based on specific proportions.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "color1": {
+              "type": "string",
+              "description": "The hex code of the first color, e.g. #FAEBD7"
+            },
+            "color2": {
+              "type": "string",
+              "description": "The hex code of the second color, e.g. #00FFFF"
+            },
+            "ratio": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "description": "The proportion of the two colors in the mix, default is [1, 1]."
+            }
+          },
+          "required": [
+            "color1",
+            "color2"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_116",
+    "category": "irrelevance",
+    "question": "Can you recommend a good movie to watch?",
+    "functions": [
+      {
+        "name": "word_count",
+        "description": "Calculate the word count of a provided string of text.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "text": {
+              "type": "string",
+              "description": "The text for which word count needs to be calculated."
+            },
+            "language": {
+              "type": "string",
+              "description": "The language in which the text is written."
+            }
+          },
+          "required": [
+            "text",
+            "language"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_209",
+    "category": "irrelevance",
+    "question": "How to build a new PC?",
+    "functions": [
+      {
+        "name": "fetch_recipe",
+        "description": "Retrieve a specific cooking recipe based on user query.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "The user's query for a recipe."
+            },
+            "numberOfResults": {
+              "type": "integer",
+              "description": "Number of recipes the user wants to retrieve. Default is 1."
+            },
+            "includeIngredients": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "An array of ingredients to include in the search. Optional.",
+              "default": [
+                "flour"
+              ]
+            }
+          },
+          "required": [
+            "query",
+            "numberOfResults"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_157",
+    "category": "irrelevance",
+    "question": "How to design a cathedral style ceiling?",
+    "functions": [
+      {
+        "name": "building_information.get_data",
+        "description": "Retrieve information about a specific building or monument",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "building_name": {
+              "type": "string",
+              "description": "The name of the building or monument."
+            },
+            "info_requested": {
+              "type": "string",
+              "description": "The specific information requested about the building or monument. For example, 'height', 'architect', etc."
+            }
+          },
+          "required": [
+            "building_name",
+            "info_requested"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_99",
+    "category": "irrelevance",
+    "question": "Find out about traffic laws in Texas.",
+    "functions": [
+      {
+        "name": "lawsuit_search",
+        "description": "Search for lawsuits related to a particular subject matter in a certain location.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The location to perform the search in."
+            },
+            "subject": {
+              "type": "string",
+              "description": "The subject matter of the lawsuits."
+            },
+            "year": {
+              "type": "integer",
+              "description": "Optional. The year in which the lawsuit was filed. Default: 2024"
+            }
+          },
+          "required": [
+            "location",
+            "subject"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_179",
+    "category": "irrelevance",
+    "question": "Who played for Clippers in NBA",
+    "functions": [
+      {
+        "name": "get_game_results",
+        "description": "Retrieve game results between two teams on a specific date.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "team_1": {
+              "type": "string",
+              "description": "The first team's name."
+            },
+            "team_2": {
+              "type": "string",
+              "description": "The second team's name."
+            },
+            "date": {
+              "type": "string",
+              "description": "The date of the game in the format YYYY-MM-DD."
+            },
+            "venue": {
+              "type": "string",
+              "description": "The venue of the match.",
+              "default": "basketball"
+            }
+          },
+          "required": [
+            "team_1",
+            "team_2",
+            "date"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_144",
+    "category": "irrelevance",
+    "question": "What is a holy book?",
+    "functions": [
+      {
+        "name": "search_holy_books",
+        "description": "Search content, chapters or authors of holy books.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "book": {
+              "type": "string",
+              "description": "The name of the holy book."
+            },
+            "chapter": {
+              "type": "integer",
+              "description": "The chapter number, if relevant. Default: 3"
+            },
+            "content": {
+              "type": "string",
+              "description": "Specific content to look for, if relevant.",
+              "default": "book"
+            }
+          },
+          "required": [
+            "book"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_175",
+    "category": "irrelevance",
+    "question": "Who was the composer of Moonlight Sonata?",
+    "functions": [
+      {
+        "name": "music_theory.get_blues_scale",
+        "description": "Generates the blues scale in a given key.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "key": {
+              "type": "string",
+              "description": "The root note or key of the blues scale."
+            },
+            "show_intervals": {
+              "type": "boolean",
+              "description": "Flag to show the intervals of the scale. Default is false."
+            }
+          },
+          "required": [
+            "key"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_217",
+    "category": "irrelevance",
+    "question": "Can you write a book?",
+    "functions": [
+      {
+        "name": "cook_recipe.create",
+        "description": "Creates a detailed recipe based on a list of ingredients and cooking instructions.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "ingredients": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A list of ingredients."
+            },
+            "instructions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A list of step-by-step cooking instructions."
+            },
+            "prep_time": {
+              "type": "float",
+              "description": "The preparation time in minutes, optional and default to 30."
+            }
+          },
+          "required": [
+            "ingredients",
+            "instructions"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_37",
+    "category": "irrelevance",
+    "question": "Find a picnic spot in Miami.",
+    "functions": [
+      {
+        "name": "local_fauna",
+        "description": "Get information about fauna in a specified region.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "location": {
+              "type": "string",
+              "description": "The region or area to find information about."
+            },
+            "species_type": {
+              "type": "string",
+              "description": "Type of species e.g birds, mammals etc. for detailed information."
+            },
+            "migration_season": {
+              "type": "string",
+              "description": "Season when fauna migrate e.g spring, winter, none. Default is none."
+            }
+          },
+          "required": [
+            "location",
+            "species_type"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_66",
+    "category": "irrelevance",
+    "question": "Calculate the probability of getting a head when flipping a coin.",
+    "functions": [
+      {
+        "name": "get_standard_deviation",
+        "description": "Calculates the standard deviation of a series of numbers.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "float"
+              },
+              "description": "An array of numbers."
+            },
+            "population": {
+              "type": "boolean",
+              "default": true,
+              "description": "A boolean indicating whether to calculate the population (true) or sample (false) standard deviation."
+            }
+          },
+          "required": [
+            "data"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  },
+  {
+    "id": "irrelevance_187",
+    "category": "irrelevance",
+    "question": "Who won the most valuable player in last season's basketball game?",
+    "functions": [
+      {
+        "name": "sports_ranking.get_team_ranking",
+        "description": "Retrieve the ranking of a specific team in a particular sport league.",
+        "parameters": {
+          "type": "dict",
+          "properties": {
+            "team_name": {
+              "type": "string",
+              "description": "The name of the team."
+            },
+            "sport_league": {
+              "type": "string",
+              "description": "The league that the team is in."
+            },
+            "season": {
+              "type": "integer",
+              "optional": "true",
+              "description": "The season for which the ranking is requested. If not provided, the most recent season is considered. Default: 1"
+            }
+          },
+          "required": [
+            "team_name",
+            "sport_league"
+          ]
+        }
+      }
+    ],
+    "ground_truth": []
+  }
+]

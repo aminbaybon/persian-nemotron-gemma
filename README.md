@@ -141,6 +141,9 @@ llama serve -hf unsloth/NVIDIA-Nemotron-3.5-Bolt-E4B-GGUF:UD-Q4_K_XL
 - `eval_tools.py` — simulated tool-calling harness
 - `data/tool_tasks.json` — frozen world, tool schemas, eight tasks, and success rules
 - `results/tool-nemotron-ud-q4-k-xl.json`, `results/tool-gemma-4-e4b.json` — tool-calling traces
+- `eval_bfcl.py` — Berkeley Function-Calling Leaderboard slice
+- `data/bfcl_sample.json` — frozen 48-question BFCL v4 sample
+- `results/bfcl-nemotron-ud-q4-k-xl.json`, `results/bfcl-gemma-4-e4b.json` — BFCL traces
 
 ## Tool-calling comparison
 
@@ -169,7 +172,7 @@ This suite is saturated. It does not separate the models on success or on incorr
 
 These figures are the pre-RL baseline. Domain-specific RL with NeMo Gym and GRPO was not executed, and there are no post-RL scores. This GTX 1650 cannot hold either 5 GB checkpoint fully for inference: a forced 99-layer offload misses the free-memory target, and observed use is about 3.8 GB of 4 GB VRAM. A GRPO job on that GPU would be a false run.
 
-The proposed next experiment is NeMo Gym GRPO on simulated domains of this kind, for example a banking customer-service agent or this storeroom-monitor console. The eight tasks above cannot show a training gain, because both models already succeed on all of them with no incorrect call. A harder held-out set would have to come first.
+The eight tasks above cannot show a training gain, because both models already succeed on all of them with no incorrect call. The BFCL slice below is the harder public set. It still ties the two models on success and on incorrect calls, so it is not yet a reward signal for domain GRPO. A held-out set with more headroom would have to come first.
 
 ```bash
 python eval_tools.py --self-test
@@ -178,3 +181,41 @@ python eval_tools.py --base-url http://127.0.0.1:8030 --model-name gemma-4-e4b
 ```
 
 Serve one checkpoint at a time with the same flags as the Persian runs (`-c 1536 -ngl 99 --reasoning off`). Do not rebuild `data/tool_tasks.json` if you want to compare against this table.
+
+## BFCL v4 tool-calling slice
+
+The eight-task suite above is saturated, so the same two checkpoints were scored on a frozen slice of the Berkeley Function-Calling Leaderboard, v4, non-live Python. Seed 25 draws 12 questions from each of `simple_python`, `multiple`, `parallel`, and `irrelevance` (48 total). The questions and possible answers are in `data/bfcl_sample.json`. Upstream files are `BFCL_v4_simple_python.json`, `BFCL_v4_multiple.json`, `BFCL_v4_parallel.json`, and `BFCL_v4_irrelevance.json` from the Gorilla repository. This is one model turn. The tools are not executed. A task succeeds only when every gold call matches and there is no unmatched call. Irrelevance succeeds only when the model calls nothing.
+
+The checker follows the public BFCL rules that matter on this slice: optional parameters are the possible answers that contain `""`, strings are compared after lowercasing and stripping spaces and `,./-_* ^`, and parallel calls are order-independent. Integers and floats match numerically, so `5` and `5.0` are the same value. A function name with `_` is accepted for a gold name with `.`, because both forms appeared in the tool channel. That rule is applied to both models.
+
+| Metric | Nemotron UD-Q4_K_XL | Gemma 4 E4B Q5_K_M |
+|---|---:|---:|
+| Task success rate | 45/48 (0.938) | 45/48 (0.938) |
+| Incorrect tool calls | 2 | 2 |
+| End-to-end latency | 585.480 s | 824.134 s |
+| Tokens consumed | 15,339 | 14,647 |
+
+| Category | Nemotron | Gemma 4 E4B | Incorrect calls, each |
+|---|---:|---:|---:|
+| simple_python | 12/12 | 12/12 | 0 |
+| multiple | 11/12 | 11/12 | 0 |
+| parallel | 10/12 | 10/12 | 2 |
+| irrelevance | 12/12 | 12/12 | 0 |
+
+Mean latency is 12.197 s for Nemotron and 17.169 s for Gemma. Prompt tokens are 10,523 for both, because the prompts are the same. Completion tokens are 4,816 versus 4,124. The quants are still not matched, and part of each checkpoint stays CPU-mapped, so the latency gap is not a pure architecture result.
+
+The three misses are the same ids.
+
+- `multiple_76` asks which materials exist for a bronze horse sculpture. The gold call is `sculpture.create_custom`. Both models called nothing, so the incorrect-call count stays 0 and the task still fails.
+- `parallel_104` needs two entropy calculations, one isothermal and one not. Each model emitted only one of those calls. The emitted call matched one gold entry, so it is not counted as incorrect. The missing call fails the task.
+- `parallel_54` is the only place incorrect calls occur. Both models ordered `"large pepperoni pizza"` at downtown and uptown. The gold item strings are `"pepperoni pizza"` and `"chicken Caesar salad"`, with `size` carrying `"large"`. Both calls miss, so each model gets 2 incorrect calls.
+
+On this public slice the models do not separate on task success or on incorrect calls. Nemotron is the lower-latency model. Gemma spends fewer completion tokens. Neither number is a post-RL score. NeMo Gym GRPO was not run.
+
+```bash
+python eval_bfcl.py --self-test
+python eval_bfcl.py --base-url http://127.0.0.1:8020 --model-name nemotron-ud-q4-k-xl
+python eval_bfcl.py --base-url http://127.0.0.1:8030 --model-name gemma-4-e4b
+```
+
+Do not pass `--prepare-only` if you want to compare against this table. That flag redraws the 48 ids.
