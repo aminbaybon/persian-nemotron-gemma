@@ -1,0 +1,386 @@
+{
+  "model": "gemma-4-e2b",
+  "base_url": "http://127.0.0.1:8020",
+  "datasets": {
+    "belebele_fa": {
+      "n": 8,
+      "metric": 0.625,
+      "metric_name": "accuracy",
+      "seconds": 10.6,
+      "rows": [
+        {
+          "i": 1,
+          "gold": "A",
+          "pred": "C",
+          "score": 0.0,
+          "seconds": 4.72,
+          "error": ""
+        },
+        {
+          "i": 2,
+          "gold": "B",
+          "pred": "B",
+          "score": 1.0,
+          "seconds": 0.79,
+          "error": ""
+        },
+        {
+          "i": 3,
+          "gold": "C",
+          "pred": "C",
+          "score": 1.0,
+          "seconds": 0.99,
+          "error": ""
+        },
+        {
+          "i": 4,
+          "gold": "D",
+          "pred": "D",
+          "score": 1.0,
+          "seconds": 0.58,
+          "error": ""
+        },
+        {
+          "i": 5,
+          "gold": "A",
+          "pred": "C",
+          "score": 0.0,
+          "seconds": 1.11,
+          "error": ""
+        },
+        {
+          "i": 6,
+          "gold": "B",
+          "pred": "B",
+          "score": 1.0,
+          "seconds": 0.6,
+          "error": ""
+        },
+        {
+          "i": 7,
+          "gold": "C",
+          "pred": "B",
+          "score": 0.0,
+          "seconds": 0.78,
+          "error": ""
+        },
+        {
+          "i": 8,
+          "gold": "D",
+          "pred": "D",
+          "score": 1.0,
+          "seconds": 0.99,
+          "error": ""
+        }
+      ]
+    },
+    "parsinlu_sentiment_food": {
+      "n": 8,
+      "metric": 0.5,
+      "metric_name": "accuracy",
+      "seconds": 3.1,
+      "rows": [
+        {
+          "i": 1,
+          "gold": "-1",
+          "pred": "-1",
+          "score": 1.0,
+          "seconds": 0.54,
+          "error": ""
+        },
+        {
+          "i": 2,
+          "gold": "-2",
+          "pred": "-2",
+          "score": 1.0,
+          "seconds": 0.48,
+          "error": ""
+        },
+        {
+          "i": 3,
+          "gold": "-3",
+          "pred": "-1",
+          "score": 0.0,
+          "seconds": 0.29,
+          "error": ""
+        },
+        {
+          "i": 4,
+          "gold": "0",
+          "pred": "1",
+          "score": 0.0,
+          "seconds": 0.24,
+          "error": ""
+        },
+        {
+          "i": 5,
+          "gold": "1",
+          "pred": "2",
+          "score": 0.0,
+          "seconds": 0.38,
+          "error": ""
+        },
+        {
+          "i": 6,
+          "gold": "2",
+          "pred": "2",
+          "score": 1.0,
+          "seconds": 0.29,
+          "error": ""
+        },
+        {
+          "i": 7,
+          "gold": "3",
+          "pred": "**کد: -1**\n\n**توضیح:** نظر بیان",
+          "score": 0.0,
+          "seconds": 0.57,
+          "error": ""
+        },
+        {
+          "i": 8,
+          "gold": "-1",
+          "pred": "-1",
+          "score": 1.0,
+          "seconds": 0.28,
+          "error": ""
+        }
+      ]
+    },
+    "parsinlu_entailment": {
+      "n": 8,
+      "metric": 0.5,
+      "metric_name": "accuracy",
+      "seconds": 3.2,
+      "rows": [
+        {
+          "i": 1,
+          "gold": "c",
+          "pred": "**e**",
+          "score": 0.0,
+          "seconds": 0.43,
+          "error": ""
+        },
+        {
+          "i": 2,
+          "gold": "e",
+          "pred": "**n**",
+          "score": 0.0,
+          "seconds": 0.59,
+          "error": ""
+        },
+        {
+          "i": 3,
+          "gold": "n",
+          "pred": "**e**",
+          "score": 0.0,
+          "seconds": 0.36,
+          "error": ""
+        },
+        {
+          "i": 4,
+          "gold": "c",
+          "pred": "**c**",
+          "score": 1.0,
+          "seconds": 0.39,
+          "error": ""
+        },
+        {
+          "i": 5,
+          "gold": "e",
+          "pred": "**n**",
+          "score": 0.0,
+          "seconds": 0.33,
+          "error": ""
+        },
+        {
+          "i": 6,
+          "gold": "n",
+          "pred": "**n**",
+          "score": 1.0,
+          "seconds": 0.37,
+          "error": ""
+        },
+        {
+          "i": 7,
+          "gold": "c",
+          "pred": "**c**",
+          "score": 1.0,
+          "seconds": 0.4,
+          "error": ""
+        },
+        {
+          "i": 8,
+          "gold": "e",
+          "pred": "**e**",
+          "score": 1.0,
+          "seconds": 0.3,
+          "error": ""
+        }
+      ]
+    },
+    "parsinlu_paraphrase": {
+      "n": 8,
+      "metric": 0.875,
+      "metric_name": "accuracy",
+      "seconds": 1.7,
+      "rows": [
+        {
+          "i": 1,
+          "gold": "0",
+          "pred": "0",
+          "score": 1.0,
+          "seconds": 0.34,
+          "error": ""
+        },
+        {
+          "i": 2,
+          "gold": "1",
+          "pred": "1",
+          "score": 1.0,
+          "seconds": 0.16,
+          "error": ""
+        },
+        {
+          "i": 3,
+          "gold": "0",
+          "pred": "0",
+          "score": 1.0,
+          "seconds": 0.19,
+          "error": ""
+        },
+        {
+          "i": 4,
+          "gold": "1",
+          "pred": "0",
+          "score": 0.0,
+          "seconds": 0.17,
+          "error": ""
+        },
+        {
+          "i": 5,
+          "gold": "0",
+          "pred": "0",
+          "score": 1.0,
+          "seconds": 0.18,
+          "error": ""
+        },
+        {
+          "i": 6,
+          "gold": "1",
+          "pred": "1",
+          "score": 1.0,
+          "seconds": 0.17,
+          "error": ""
+        },
+        {
+          "i": 7,
+          "gold": "0",
+          "pred": "0",
+          "score": 1.0,
+          "seconds": 0.25,
+          "error": ""
+        },
+        {
+          "i": 8,
+          "gold": "1",
+          "pred": "1",
+          "score": 1.0,
+          "seconds": 0.2,
+          "error": ""
+        }
+      ]
+    },
+    "persian_qa": {
+      "n": 8,
+      "metric": 0.6909,
+      "metric_name": "token_f1",
+      "seconds": 10.0,
+      "rows": [
+        {
+          "i": 1,
+          "gold": [
+            "قوم هون",
+            "هون"
+          ],
+          "pred": "اتیلا رهبر قوم هون بود.",
+          "score": 0.5714285714285715,
+          "seconds": 1.28,
+          "error": ""
+        },
+        {
+          "i": 2,
+          "gold": [
+            "دومین یکپارچه‌سازی بزرگ در فیزیک",
+            "دومین یکپارچه‌سازی بزرگ"
+          ],
+          "pred": "معادلات ماکسول دومین یکپارچه‌سازی بزرگ در فیزیک است.",
+          "score": 0.8,
+          "seconds": 1.54,
+          "error": ""
+        },
+        {
+          "i": 3,
+          "gold": [
+            "مهاتما گاندی"
+          ],
+          "pred": "مهاتما گاندی",
+          "score": 1.0,
+          "seconds": 1.07,
+          "error": ""
+        },
+        {
+          "i": 4,
+          "gold": [
+            "لئوپولد پنجم"
+          ],
+          "pred": "اسیر لئوپولد پنجم",
+          "score": 0.8,
+          "seconds": 1.32,
+          "error": ""
+        },
+        {
+          "i": 5,
+          "gold": [
+            "میل مغناطیسی"
+          ],
+          "pred": "میل مغناطیسی",
+          "score": 1.0,
+          "seconds": 1.09,
+          "error": ""
+        },
+        {
+          "i": 6,
+          "gold": [
+            "مشخص نیست"
+          ],
+          "pred": "نویسندگان مشخص نیست.",
+          "score": 0.8,
+          "seconds": 1.15,
+          "error": ""
+        },
+        {
+          "i": 7,
+          "gold": [
+            "دکتر مارتین لوترکینگ، تنزین گیاتسو، لخ والسا، استفان بیکو، آنگ سان سو چی و نلسون ماندلا",
+            "مارتین لوترکینگ، تنزین گیاتسو، لخ والسا، استفان بیکو، آنگ سان سو چی و نلسون ماندلا"
+          ],
+          "pred": "اصل ساتیاگراهای گاندی روی بسیاری از فعالان آزادیخواه تأثیر گذاشت.",
+          "score": 0.0,
+          "seconds": 1.06,
+          "error": ""
+        },
+        {
+          "i": 8,
+          "gold": [
+            "پدربزرگ لوط، تارح، او را به سرپرستی گرفت",
+            "تارح، او را به سرپرستی گرفت"
+          ],
+          "pred": "بعد از مرگ پدر لوط، تارح او را سرپرستی گرفت.",
+          "score": 0.5555555555555556,
+          "seconds": 1.48,
+          "error": ""
+        }
+      ]
+    }
+  }
+}

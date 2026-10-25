@@ -1,0 +1,386 @@
+{
+  "model": "nemotron-ud-q4-k-xl",
+  "base_url": "http://127.0.0.1:8020",
+  "datasets": {
+    "belebele_fa": {
+      "n": 8,
+      "metric": 1.0,
+      "metric_name": "accuracy",
+      "seconds": 58.3,
+      "rows": [
+        {
+          "i": 1,
+          "gold": "A",
+          "pred": "A",
+          "score": 1.0,
+          "seconds": 3.54,
+          "error": ""
+        },
+        {
+          "i": 2,
+          "gold": "B",
+          "pred": "B",
+          "score": 1.0,
+          "seconds": 5.9,
+          "error": ""
+        },
+        {
+          "i": 3,
+          "gold": "C",
+          "pred": "C",
+          "score": 1.0,
+          "seconds": 11.52,
+          "error": ""
+        },
+        {
+          "i": 4,
+          "gold": "D",
+          "pred": "D",
+          "score": 1.0,
+          "seconds": 4.62,
+          "error": ""
+        },
+        {
+          "i": 5,
+          "gold": "A",
+          "pred": "A",
+          "score": 1.0,
+          "seconds": 12.33,
+          "error": ""
+        },
+        {
+          "i": 6,
+          "gold": "B",
+          "pred": "B",
+          "score": 1.0,
+          "seconds": 4.58,
+          "error": ""
+        },
+        {
+          "i": 7,
+          "gold": "C",
+          "pred": "C",
+          "score": 1.0,
+          "seconds": 6.85,
+          "error": ""
+        },
+        {
+          "i": 8,
+          "gold": "D",
+          "pred": "D",
+          "score": 1.0,
+          "seconds": 8.95,
+          "error": ""
+        }
+      ]
+    },
+    "parsinlu_sentiment_food": {
+      "n": 8,
+      "metric": 0.5,
+      "metric_name": "accuracy",
+      "seconds": 26.7,
+      "rows": [
+        {
+          "i": 1,
+          "gold": "-1",
+          "pred": "-1",
+          "score": 1.0,
+          "seconds": 3.41,
+          "error": ""
+        },
+        {
+          "i": 2,
+          "gold": "-2",
+          "pred": "-1",
+          "score": 0.0,
+          "seconds": 4.16,
+          "error": ""
+        },
+        {
+          "i": 3,
+          "gold": "-3",
+          "pred": "-2",
+          "score": 0.0,
+          "seconds": 2.24,
+          "error": ""
+        },
+        {
+          "i": 4,
+          "gold": "0",
+          "pred": "-1",
+          "score": 0.0,
+          "seconds": 2.76,
+          "error": ""
+        },
+        {
+          "i": 5,
+          "gold": "1",
+          "pred": "1",
+          "score": 1.0,
+          "seconds": 4.44,
+          "error": ""
+        },
+        {
+          "i": 6,
+          "gold": "2",
+          "pred": "2",
+          "score": 1.0,
+          "seconds": 4.26,
+          "error": ""
+        },
+        {
+          "i": 7,
+          "gold": "3",
+          "pred": "-1",
+          "score": 0.0,
+          "seconds": 2.82,
+          "error": ""
+        },
+        {
+          "i": 8,
+          "gold": "-1",
+          "pred": "-1",
+          "score": 1.0,
+          "seconds": 2.59,
+          "error": ""
+        }
+      ]
+    },
+    "parsinlu_entailment": {
+      "n": 8,
+      "metric": 0.75,
+      "metric_name": "accuracy",
+      "seconds": 29.0,
+      "rows": [
+        {
+          "i": 1,
+          "gold": "c",
+          "pred": "e",
+          "score": 0.0,
+          "seconds": 2.88,
+          "error": ""
+        },
+        {
+          "i": 2,
+          "gold": "e",
+          "pred": "e",
+          "score": 1.0,
+          "seconds": 4.95,
+          "error": ""
+        },
+        {
+          "i": 3,
+          "gold": "n",
+          "pred": "e",
+          "score": 0.0,
+          "seconds": 4.71,
+          "error": ""
+        },
+        {
+          "i": 4,
+          "gold": "c",
+          "pred": "c",
+          "score": 1.0,
+          "seconds": 5.76,
+          "error": ""
+        },
+        {
+          "i": 5,
+          "gold": "e",
+          "pred": "e",
+          "score": 1.0,
+          "seconds": 2.05,
+          "error": ""
+        },
+        {
+          "i": 6,
+          "gold": "n",
+          "pred": "n",
+          "score": 1.0,
+          "seconds": 2.33,
+          "error": ""
+        },
+        {
+          "i": 7,
+          "gold": "c",
+          "pred": "c",
+          "score": 1.0,
+          "seconds": 3.3,
+          "error": ""
+        },
+        {
+          "i": 8,
+          "gold": "e",
+          "pred": "e",
+          "score": 1.0,
+          "seconds": 3.0,
+          "error": ""
+        }
+      ]
+    },
+    "parsinlu_paraphrase": {
+      "n": 8,
+      "metric": 0.75,
+      "metric_name": "accuracy",
+      "seconds": 15.6,
+      "rows": [
+        {
+          "i": 1,
+          "gold": "0",
+          "pred": "0",
+          "score": 1.0,
+          "seconds": 2.54,
+          "error": ""
+        },
+        {
+          "i": 2,
+          "gold": "1",
+          "pred": "1",
+          "score": 1.0,
+          "seconds": 2.0,
+          "error": ""
+        },
+        {
+          "i": 3,
+          "gold": "0",
+          "pred": "0",
+          "score": 1.0,
+          "seconds": 1.93,
+          "error": ""
+        },
+        {
+          "i": 4,
+          "gold": "1",
+          "pred": "0",
+          "score": 0.0,
+          "seconds": 1.62,
+          "error": ""
+        },
+        {
+          "i": 5,
+          "gold": "0",
+          "pred": "0",
+          "score": 1.0,
+          "seconds": 1.68,
+          "error": ""
+        },
+        {
+          "i": 6,
+          "gold": "1",
+          "pred": "0",
+          "score": 0.0,
+          "seconds": 1.36,
+          "error": ""
+        },
+        {
+          "i": 7,
+          "gold": "0",
+          "pred": "0",
+          "score": 1.0,
+          "seconds": 3.1,
+          "error": ""
+        },
+        {
+          "i": 8,
+          "gold": "1",
+          "pred": "1",
+          "score": 1.0,
+          "seconds": 1.35,
+          "error": ""
+        }
+      ]
+    },
+    "persian_qa": {
+      "n": 8,
+      "metric": 0.9062,
+      "metric_name": "token_f1",
+      "seconds": 76.1,
+      "rows": [
+        {
+          "i": 1,
+          "gold": [
+            "قوم هون",
+            "هون"
+          ],
+          "pred": "هون",
+          "score": 1.0,
+          "seconds": 12.51,
+          "error": ""
+        },
+        {
+          "i": 2,
+          "gold": [
+            "دومین یکپارچه‌سازی بزرگ در فیزیک",
+            "دومین یکپارچه‌سازی بزرگ"
+          ],
+          "pred": "دومین یکپارچه‌سازی بزرگ",
+          "score": 1.0,
+          "seconds": 10.29,
+          "error": ""
+        },
+        {
+          "i": 3,
+          "gold": [
+            "مهاتما گاندی"
+          ],
+          "pred": "مهاتما گاندی",
+          "score": 1.0,
+          "seconds": 8.85,
+          "error": ""
+        },
+        {
+          "i": 4,
+          "gold": [
+            "لئوپولد پنجم"
+          ],
+          "pred": "لئوپولد پنجم",
+          "score": 1.0,
+          "seconds": 10.28,
+          "error": ""
+        },
+        {
+          "i": 5,
+          "gold": [
+            "میل مغناطیسی"
+          ],
+          "pred": "میل مغناطیسی",
+          "score": 1.0,
+          "seconds": 8.87,
+          "error": ""
+        },
+        {
+          "i": 6,
+          "gold": [
+            "مشخص نیست"
+          ],
+          "pred": "مشخص نیست",
+          "score": 1.0,
+          "seconds": 8.33,
+          "error": ""
+        },
+        {
+          "i": 7,
+          "gold": [
+            "دکتر مارتین لوترکینگ، تنزین گیاتسو، لخ والسا، استفان بیکو، آنگ سان سو چی و نلسون ماندلا",
+            "مارتین لوترکینگ، تنزین گیاتسو، لخ والسا، استفان بیکو، آنگ سان سو چی و نلسون ماندلا"
+          ],
+          "pred": "مارتین لوترکینگ، تنزین گیاتسو، لخ والسا، استفان بیکو، آنگ سان سو چی و نلسون ماندلا",
+          "score": 1.0,
+          "seconds": 4.41,
+          "error": ""
+        },
+        {
+          "i": 8,
+          "gold": [
+            "پدربزرگ لوط، تارح، او را به سرپرستی گرفت",
+            "تارح، او را به سرپرستی گرفت"
+          ],
+          "pred": "سرپرستی ابراهیم",
+          "score": 0.25,
+          "seconds": 12.55,
+          "error": ""
+        }
+      ]
+    }
+  }
+}
